@@ -1,0 +1,2 @@
+*.ttf filter=lfs diff=lfs merge=lfs -text
+Assets/HOLOMEProject/Utilities/Fonts/LINESeedJP_A_TTF_Rg[[:space:]]SDF.asset filter=lfs diff=lfs merge=lfs -text
