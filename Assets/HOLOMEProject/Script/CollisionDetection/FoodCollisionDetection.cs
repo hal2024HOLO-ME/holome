@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
@@ -56,8 +57,19 @@ public class FoodCollisionDetection : MonoBehaviour
 
             Vector3 foodPosition = foodObject.transform.position;
 
+            // キャラクターによって正面方向が違うので、それぞれのキャラクターの正面方向を設定する。
+            Dictionary<string, Vector3> characterPositions = new()
+            {
+                { "MiiVerNormal", new Vector3(0.0f, 0.0f, 0.0f) },
+                { "MiiVerGhost", new Vector3(0.0f, 0.0f, 0.0f) },
+                { "Holo", new Vector3(0.0f, 0.0f, 0.0f) },
+                { "TanukiVerNormal", new Vector3(0.0f, -90f, 0.0f) },
+            };
+
             // 移動する方向に向く
             characterObject.transform.LookAt(foodPosition);
+            characterObject.transform.Rotate(characterPositions[characterObject.name]);
+
 
             /**
                 TODO: 移動アニメーション追加。
@@ -75,6 +87,8 @@ public class FoodCollisionDetection : MonoBehaviour
 
             // Characterを元の位置に戻す
             characterObject.transform.LookAt(characterPositionSave);
+            characterObject.transform.Rotate(characterPositions[characterObject.name]);
+
             yield return StartCoroutine(MoveToDestination(characterObject, characterPositionSave).ToYieldInstruction());
         }
         animationTimer.SetIsTimePassed(false);
@@ -106,11 +120,22 @@ public class FoodCollisionDetection : MonoBehaviour
         Vector3 target,
         IObserver<Unit> observer
     ){
+        Vector3 characterPosition = characterObject.transform.position;
+        Vector3 direction = (target - characterPosition).normalized;
+        float distance = Vector3.Distance(characterPosition, target);
+        Vector3 size = characterObject.transform.Find("body").GetComponent<BoxCollider>().size;
+        // NOTE: 体のサイズによって移動距離を調整する。
+        distance *= (1 - size.x / 10);
+        float elapsedTime = 0f;
         float duration = 2f;
-        while (Vector3.Distance(characterObject.transform.position, target) > 0.7f)
+        while (elapsedTime < duration)
         {
-            characterObject.transform.position = 
-                Vector3.Lerp(characterObject.transform.position, target, Time.deltaTime / duration);
+            elapsedTime += Time.deltaTime;
+
+            // 新しい位置を計算して補間
+            Vector3 newPosition = characterPosition + (direction * distance);
+            characterObject.transform.position = Vector3.Lerp(characterPosition, newPosition, elapsedTime / duration);
+
             yield return null;
         }
         observer.OnNext(Unit.Default);
