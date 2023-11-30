@@ -115,8 +115,6 @@ public class FbxLoader : MonoBehaviour
     {
         // 初期位置
         childObject.transform.position = new Vector3(0, 4, 10);
-        // 初期回転
-        childObject.transform.Rotate(new Vector3(0, -90, 0));
         // 初期サイズ
         childObject.transform.localScale = new Vector3(1, 1, 1);
     }
