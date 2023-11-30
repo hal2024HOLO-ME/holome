@@ -35,7 +35,6 @@ public class FbxLoader : MonoBehaviour
             // FBXをHierarchyに追加する
             GameObject generatedObject = Instantiate(fbxObject);
             generatedObject.name = gameObjectName;
-            generatedObject.transform.SetParent(transform, false);
 
             Dictionary<string, string[]> gameObjectList = new()
                 {
@@ -58,10 +57,11 @@ public class FbxLoader : MonoBehaviour
 
 
             CharacterModel characterModel = AddCharacterModel(generatedObject);
+            SetInitSize(characterModel.GetGameObject());
 
-/*            GameObject exfrowerObject = GameObject.Find("exfrower");
-            CollisionDetection baseCollisionDetection = exfrowerObject.AddComponent<CollisionDetection>();
-            baseCollisionDetection.SetCharacterModel(characterModel);*/
+            /*            GameObject exfrowerObject = GameObject.Find("exfrower");
+                        CollisionDetection baseCollisionDetection = exfrowerObject.AddComponent<CollisionDetection>();
+                        baseCollisionDetection.SetCharacterModel(characterModel);*/
 
             GameObject foodObject = GameObject.Find("food");
             FoodCollisionDetection foodCollisionDetection = foodObject.GetComponent<FoodCollisionDetection>();
@@ -106,5 +106,16 @@ public class FbxLoader : MonoBehaviour
         characterModel.SetGameObject(childObject);
         characterModel.SetAnimatorParameters(childObject.GetComponent<Animator>().parameters);
         return characterModel;
+    }
+
+    /// <summary>
+    /// 生成した初期Objectに対して、initialPosition, Rotate, Scaleを設定する。
+    /// </summary>
+    private void SetInitSize(GameObject childObject)
+    {
+        // 初期位置
+        childObject.transform.position = new Vector3(0, 4, 10);
+        // 初期サイズ
+        childObject.transform.localScale = new Vector3(1, 1, 1);
     }
 }
