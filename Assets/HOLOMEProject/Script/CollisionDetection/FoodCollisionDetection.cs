@@ -82,6 +82,10 @@ public class FoodCollisionDetection : MonoBehaviour
             // 食べるアニメーションをトリガー
             yield return StartCoroutine(TriggerEatAnimation(characterAnimator));
 
+            NostalgicManager nostalgicManager = characterModel.GetGameObject().GetComponent<NostalgicManager>();
+            nostalgicManager.IncreaseNostalgicLevel();
+            nostalgicManager.ChangeObjectSize();
+
             // 30秒待機
             yield return new WaitForSeconds(30f);
 
