@@ -69,6 +69,7 @@ public class FbxLoader : MonoBehaviour
 
             generatedObject.AddComponent<HealthMonitor>();
             generatedObject.AddComponent<AnimationTimer>();
+            generatedObject.AddComponent<NostalgicManager>();
         }
         else
         {
@@ -104,7 +105,6 @@ public class FbxLoader : MonoBehaviour
     {
         CharacterModel characterModel = childObject.AddComponent<CharacterModel>();
         characterModel.SetGameObject(childObject);
-        characterModel.SetAnimatorParameters(childObject.GetComponent<Animator>().parameters);
         return characterModel;
     }
 
