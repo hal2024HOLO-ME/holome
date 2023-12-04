@@ -12,8 +12,6 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
         // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();
-
-       
     }
 
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
@@ -27,9 +25,34 @@ public class SampleScene : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
+        // HoloLensのカメラの位置を取得
+        Transform mainCameraTransform = Camera.main.transform;
+
+
+        if (mainCameraTransform != null)
+        {
+            // Main Camera の位置を取得
+            Vector3 cameraPosition = mainCameraTransform.position;
+
+            // 1メートル以内のランダムな位置を生成
+            Vector3 randomOffset = Random.onUnitSphere * 1f;
+
+            // 生成する位置を計算
+            Vector3 position = cameraPosition + randomOffset;
+
+            // オブジェクトを生成
+            Quaternion rotation = Quaternion.Euler(0, 270, 0);
+            PhotonNetwork.Instantiate("Avatar", position, rotation);
+            GameObject.Find("Avatar(Clone)").transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        }
+        else
+        {
+            Debug.LogError("メインカメラがありません");
+        }
+
         // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
-        var position = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-        PhotonNetwork.Instantiate("Avatar", position, Quaternion.identity);
+        //var position = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
+        
         Debug.Log("ルームに参加しました。");
     }
 }
