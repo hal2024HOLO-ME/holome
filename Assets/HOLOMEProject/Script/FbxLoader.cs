@@ -8,6 +8,7 @@ using UnityEngine;
 public class FbxLoader : MonoBehaviour
 {
     private string gameObjectName;
+    public GameObject Food;
 
     // getter and setter
     public string GetGameObjectName()
@@ -63,8 +64,7 @@ public class FbxLoader : MonoBehaviour
                         CollisionDetection baseCollisionDetection = exfrowerObject.AddComponent<CollisionDetection>();
                         baseCollisionDetection.SetCharacterModel(characterModel);*/
 
-            GameObject foodObject = GameObject.Find("food");
-            FoodCollisionDetection foodCollisionDetection = foodObject.GetComponent<FoodCollisionDetection>();
+            FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
             foodCollisionDetection.SetCharacterModel(characterModel);
 
             generatedObject.AddComponent<HealthMonitor>();
