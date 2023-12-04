@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58403a9acbde68247a16397d069aa2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailInputField: {fileID: 621347087}
+  loginIdInputField: {fileID: 621347087}
   passwordInputField: {fileID: 560733347}
 --- !u!4 &737349638 stripped
 Transform:
@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58403a9acbde68247a16397d069aa2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailInputField: {fileID: 0}
+  loginIdInputField: {fileID: 0}
   passwordInputField: {fileID: 0}
 --- !u!4 &1706761050 stripped
 Transform:
