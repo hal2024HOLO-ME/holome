@@ -26,7 +26,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         // HoloLensのカメラの位置を取得
-        Transform mainCameraTransform = CameraSystem.Instance.MainCameraRig.CameraTransform;
+        Transform mainCameraTransform = Camera.main.transform;
 
 
         if (mainCameraTransform != null)
@@ -43,6 +43,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
             // オブジェクトを生成
             Quaternion rotation = Quaternion.Euler(0, 270, 0);
             PhotonNetwork.Instantiate("Avatar", position, rotation);
+            GameObject.Find("Avatar(Clone)").transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
         else
         {
