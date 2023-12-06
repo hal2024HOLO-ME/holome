@@ -37,20 +37,28 @@ public class FbxLoader : MonoBehaviour
             GameObject generatedObject = Instantiate(fbxObject);
             generatedObject.name = gameObjectName;
 
-            Dictionary<string, string[]> gameObjectList = new()
+            Dictionary<string, (string[], string[])> gameObjectList = new()
                 {
-                    { "MiiVerNormal", new string[] {"body", "face"} },
-                    { "MiiVerGhost", new string[] {"body", "face"} },
-                    { "Holo", new string[] { } },
-                    { "TanukiVerNormal", new string[] { "body", "face" } },
+                    { "MiiVerNormal", (new string[] {"body", "head"} , new String[]{ })},
+                    { "MiiVerGhost", (new string[] {"body", "head"} , new String[]{"body", "head", "eye", "ear", "obj1", "アーマチュア"})},
+                    { "TanukiVerNormal", (new string[] { "body", "face" }, new String[]{}) },
                 };
             foreach (Transform child in generatedObject.transform)
             {
                 // childのnameがgameObjectNameList[gameObjectName]に含まれているかどうか。
-                if (Array.Exists(gameObjectList[gameObjectName], element => element == child.name))
+                if (Array.Exists(gameObjectList[gameObjectName].Item1, element => element == child.name))
                 {
                     child.gameObject.AddComponent<BoxCollider>();
                     AddRigidBody(child.gameObject);
+                }
+
+                if (Array.Exists(gameObjectList[gameObjectName].Item2, element => element == child.name))
+                {
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
                 }
             }
 
