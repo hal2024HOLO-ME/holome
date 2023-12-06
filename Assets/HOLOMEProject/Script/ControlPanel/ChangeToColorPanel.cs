@@ -9,14 +9,6 @@ public class ChangeToColorPanel : MonoBehaviour
     public GameObject ItemControlPanel;
 
     /// <summary>
-    /// カラーカスタマイズパネルを非表示にする
-    /// NOTO: デフォル
-    void Start()
-    {
-        ColorControlPanel.SetActive(false);
-    }
-
-    /// <summary>
     /// デフォルトのパネル、アクセサリーカスタマイズを非表示にして、カラーカスタマイズパネルを表示する
     /// </summary>
     public void ChangeToColorCustomizePanel()

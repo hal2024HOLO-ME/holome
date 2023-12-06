@@ -11,6 +11,15 @@ public class ChangeToBasePanel : MonoBehaviour
     /// <summary>
     /// カラーカスタマイズパネル、アクセサリーカスタマイズを非表示にしてデフォルトのパネルを表示する
     /// </summary>
+    void Start()
+    {
+        ColorControlPanel.SetActive(false);
+        ItemControlPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// カラーカスタマイズパネル、アクセサリーカスタマイズを非表示にしてデフォルトのパネルを表示する
+    /// </summary>
     public void ChangeToBaseControlPanel()
     {
         BaseControlPanel.SetActive(true);
