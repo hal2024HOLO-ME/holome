@@ -52,11 +52,7 @@ public class FbxLoader : MonoBehaviour
                     AddRigidBody(child.gameObject);
                 }
 
-                if (Array.Exists(gameObjectList[gameObjectName].Item2, element => element == child.name))
-                {
-                    child.gameObject.SetActive(true);
-                }
-                else
+                if (!Array.Exists(gameObjectList[gameObjectName].Item2, element => element == child.name))
                 {
                     child.gameObject.SetActive(false);
                 }
