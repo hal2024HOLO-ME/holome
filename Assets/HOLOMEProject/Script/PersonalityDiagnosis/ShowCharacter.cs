@@ -19,7 +19,9 @@ public class ShowCharacter : MonoBehaviour
         // fbxLoaderのコンストラクタを実行して、generateObjectにMiiを生成する。
         FbxLoader fbxLoader = generateObject.GetComponent<FbxLoader>();
 
-        fbxLoader.SetGameObjectName(gameObjectName);
+        //fbxLoader.SetGameObjectName(gameObjectName);
+        // NOTE: 発表用に固定値を設定
+        fbxLoader.SetGameObjectName("MiiVerGhost");
         fbxLoader.GenerateObject();
     }
 }
