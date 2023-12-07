@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeToColorPanel : MonoBehaviour
+public class ChangeToItemPanel : MonoBehaviour
 {
+
     public GameObject ColorControlPanel;
     public GameObject BaseControlPanel;
     public GameObject ItemControlPanel;
 
     /// <summary>
-    /// デフォルトのパネル、アクセサリーカスタマイズを非表示にして、カラーカスタマイズパネルを表示する
+    /// ベースパネルとカラーカスタマイズパネルの非表示
     /// </summary>
-    public void ChangeToColorCustomizePanel()
+    public void ChangeToItemCustomizePanel()
     {
         BaseControlPanel.SetActive(false);
-        ColorControlPanel.SetActive(true);
-        ItemControlPanel.SetActive(false);
+        ColorControlPanel.SetActive(false);
+        ItemControlPanel.SetActive(true);
     }
 }
