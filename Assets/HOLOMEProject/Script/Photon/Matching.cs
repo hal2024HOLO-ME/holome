@@ -41,9 +41,10 @@ public class SampleScene : MonoBehaviourPunCallbacks
             Vector3 position = cameraPosition + randomOffset;
 
             // オブジェクトを生成
+            //TODO: バックエンドできるまでキャラ名を固定値ぶち込む
             Quaternion rotation = Quaternion.Euler(0, 270, 0);
-            PhotonNetwork.Instantiate("Avatar", position, rotation);
-            GameObject.Find("Avatar(Clone)").transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            PhotonNetwork.Instantiate("MiiVerGhost", position, rotation);
+            GameObject.Find("MiiVerGhost(Clone)").transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
         else
         {
