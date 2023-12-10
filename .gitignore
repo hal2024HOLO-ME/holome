@@ -73,3 +73,6 @@ build_BurstDebugInformation_DoNotShip
 
 # font関連除外
 Assets/HOLOMEProject/Utilities/Fonts*
+
+# config
+Assets/Resources/Config.json*

@@ -18,7 +18,36 @@ public class SendResult : MonoBehaviour
     public TextMeshPro ResultBelowText;
     public SpriteRenderer characterImageRenderer;
 
-    private const string url = "http://localhost:3001/api/v1/diagnosis";
+    private static Config config;
+
+    /// <summary>
+    ///  起動時にLoadConfig()でconfigファイルを読み込む
+    /// </summary>
+    void Awake()
+    {
+        if (config == null)
+        {
+            LoadConfig();
+        }
+    }
+
+    /// <summary>
+    /// ResourcesにあるConfigファイルをロードする
+    /// </summary>
+    private void LoadConfig()
+    {
+        TextAsset configFile = Resources.Load<TextAsset>("Config");
+        if (configFile != null)
+        {
+            config = JsonUtility.FromJson<Config>(configFile.text);
+        }
+        else
+        {
+            Debug.LogError("Configファイルが見つかりません！");
+        }
+    }
+
+
 
     /// <summary>
     /// StartCoroutineでBEとの連携処理を非同期で行う
@@ -41,7 +70,7 @@ public class SendResult : MonoBehaviour
         form.AddField("character_type", SelectCharacterType.characterType);
         form.AddField("character_name", characterName);
 
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(config.BASE_URL + "/diagnosis", form);
         yield return www;
 
         if (www.error == null)

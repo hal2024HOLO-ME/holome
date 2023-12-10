@@ -9,6 +9,36 @@ public class Login : MonoBehaviour
     public MRTKUGUIInputField passwordInputField;
     public static string session;
 
+    private static Config config;
+
+
+    /// <summary>
+    ///  起動時にLoadConfig()でconfigファイルを読み込む
+    /// </summary>
+    void Awake()
+    {
+        if (config == null)
+        {
+            LoadConfig();
+        }
+    }
+
+    /// <summary>
+    /// ResourcesにあるConfigファイルをロードする
+    /// </summary>
+    private static void LoadConfig()
+    {
+        TextAsset configFile = Resources.Load<TextAsset>("Config");
+        if (configFile != null)
+        {
+            config = JsonUtility.FromJson<Config>(configFile.text);
+        }
+        else
+        {
+            Debug.LogError("Configファイルが見つかりません！");
+        }
+    }
+
     /// <summary>
     /// ログイン処理
     /// </summary>
@@ -30,10 +60,10 @@ public class Login : MonoBehaviour
     private IEnumerator SendLoginRequest(string email, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("email", email);
+        form.AddField("login_id", email);
         form.AddField("password", password);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:3001/api/v1/auth/signin", form))
+        using (UnityWebRequest www = UnityWebRequest.Post(config.BASE_URL + "/auth/signin", form))
         {
             yield return www.SendWebRequest();
 
