@@ -1,7 +1,7 @@
-## clone 後にやること
-
-1. `\Holo-me\Assets\HOLOMEProject\Utilities\Fonts`を作成
-1. 議事録などが入ってる Google Drive にあがっている Font を拾ってきて作成したディレクトリに貼り付ける
+## セットアップ
+1. cloneする
+1. 議事録などが入ってる Google Drive にあがっている Font を拾ってくる
+1. `\Holo-me\Assets\HOLOMEProject\Utilities\Fonts`になるように配置する
 
 ## アニメーションをテストする方々
 
