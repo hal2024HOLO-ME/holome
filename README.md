@@ -2,7 +2,7 @@
 1. cloneする
 1. 議事録などが入ってる Google Drive にあがっている Font を拾ってくる
 1. `\Holo-me\Assets\HOLOMEProject\Utilities\Fonts`になるように配置する
-1. 同じくDriveに上がっているconfigファイル(metaファイルも忘れずに)を拾ってきて`\develop\holome\Assets\Resources\Config.json`になるように配置する
+1. 同じくDriveに上がっているconfigファイル(metaファイルも忘れずに)を拾ってきて`\Assets\Resources\Config.json`になるように配置する
 
 ## アニメーションをテストする方々
 
