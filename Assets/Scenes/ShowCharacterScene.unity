@@ -1138,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: daf49b991a71d534bb2997ac54ed775f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: daf49b991a71d534bb2997ac54ed775f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1653,15 +1653,15 @@ PrefabInstance:
       objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2228947736508096533, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.7058824
       objectReference: {fileID: 0}
     - target: {fileID: 2228947736508096533, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
       propertyPath: m_Color.g
-      value: 0.9725491
+      value: 0.6156863
       objectReference: {fileID: 0}
     - target: {fileID: 2228947736508096533, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
       propertyPath: m_Color.r
-      value: 0.9568628
+      value: 0.60784316
       objectReference: {fileID: 0}
     - target: {fileID: 2302024426645924609, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
       propertyPath: m_IsActive
@@ -3190,7 +3190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject1: {fileID: 0}
   targetObject2: {fileID: 0}
-  newColor: {r: 0.9568628, g: 0.9725491, b: 1, a: 0}
+  newColor: {r: 0.60784316, g: 0.6156863, b: 0.7058824, a: 0}
   change:
   - 
   - 
@@ -17241,7 +17241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: daf49b991a71d534bb2997ac54ed775f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: daf49b991a71d534bb2997ac54ed775f, type: 3}
       propertyPath: m_AnchoredPosition.y
