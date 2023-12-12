@@ -9,6 +9,7 @@ public class FbxLoader : MonoBehaviour
 {
     private string gameObjectName;
     public GameObject Food;
+    public GameObject Brush;
 
     // getter and setter
     public string GetGameObjectName()
@@ -64,12 +65,11 @@ public class FbxLoader : MonoBehaviour
             CharacterModel characterModel = AddCharacterModel(generatedObject);
             SetInitSize(characterModel.GetGameObject());
 
-            /*            GameObject exfrowerObject = GameObject.Find("exfrower");
-                        CollisionDetection baseCollisionDetection = exfrowerObject.AddComponent<CollisionDetection>();
-                        baseCollisionDetection.SetCharacterModel(characterModel);*/
-
             FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
             foodCollisionDetection.SetCharacterModel(characterModel);
+
+            BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
+            brushCollisionDetection.SetCharacterModel(characterModel);
 
             generatedObject.AddComponent<HealthMonitor>();
             generatedObject.AddComponent<AnimationTimer>();
