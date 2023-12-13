@@ -5,7 +5,7 @@ using MixedReality.Toolkit.UX;
 
 public class Login : MonoBehaviour
 {
-    public MRTKUGUIInputField emailInputField;
+    public MRTKUGUIInputField userIdInputField;
     public MRTKUGUIInputField passwordInputField;
     public static string session;
 
@@ -44,23 +44,23 @@ public class Login : MonoBehaviour
     /// </summary>
     public void HandleLogin()
     {
-        string email = emailInputField.text;
+        string userId = userIdInputField.text;
         string password = passwordInputField.text;
 
-        StartCoroutine(SendLoginRequest(email, password));
+        StartCoroutine(SendLoginRequest(userId, password));
     }
 
     /// <summary>
-    /// メールアドレスとパスワードを受け取りBEで照合する
+    /// ユーザーIDとパスワードを受け取りBEで照合する
     /// </summary>
-    /// <param name="email"></param>
+    /// <param name="userId"></param>
     /// <param name="password"></param>
     /// <returns></returns>
 
-    private IEnumerator SendLoginRequest(string email, string password)
+    private IEnumerator SendLoginRequest(string userId, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("login_id", email);
+        form.AddField("login_id", userId);
         form.AddField("password", password);
 
         using (UnityWebRequest www = UnityWebRequest.Post(config.BASE_URL + "/auth/signin", form))
