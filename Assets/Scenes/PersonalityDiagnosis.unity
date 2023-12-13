@@ -468,7 +468,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
   m_PrefabInstance: {fileID: 766559310}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &241285710
+--- !u!114 &241285720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 241285698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3e25ab1adef7a44814fbeb1cfedad5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5561be7e830ee8b47937dca6ddaee74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &251717106 stripped
@@ -1607,18 +1607,18 @@ PrefabInstance:
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 241285710}
+      objectReference: {fileID: 241285720}
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveToPhotonCharacter
+      value: MoveToShowCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MoveToPhotonScene, Assembly-CSharp
+      value: MoveToShowCharacterScene, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1706,7 +1706,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8829903863008004601, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 241285710}
+      addedObject: {fileID: 241285720}
+    - targetCorrespondingSourceObject: {fileID: 8829903863595505675, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
 --- !u!1 &803294828
 GameObject:
@@ -2017,7 +2020,25 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 241285699}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6406055597923527085, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1311517368851435787, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6599014034041732059, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 295619107062559783, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 7575726316832662508, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 375404210672249865, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
 --- !u!1001 &900441419
 PrefabInstance:
