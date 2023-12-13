@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
+using UnityEditor.PackageManager;
 
 public class Register : MonoBehaviour
 {
-    public MRTKUGUIInputField emailInputField;
+    public MRTKUGUIInputField userIdInputField;
     public MRTKUGUIInputField passwordInputField;
     public MRTKUGUIInputField confirmPasswordInputField;
     public TextMeshPro ErrorText;
@@ -46,15 +47,31 @@ public class Register : MonoBehaviour
     /// </summary>
     public void HandleRegister()
     {
-        string email = emailInputField.text;
+        string userId = userIdInputField.text;
         string password = passwordInputField.text;
         string confirmPassword = confirmPasswordInputField.text;
 
-        if (IsPasswordValid(password, confirmPassword))
+        if(IsUserIdValid(userId) && IsPasswordValid(password, confirmPassword))
         {
-            StartCoroutine(SendRegisterRequest(email, password));
+            StartCoroutine(SendRegisterRequest(userId, password));
         }
     }
+
+    private bool IsUserIdValid(string userId)
+    {
+        if(userId == null)
+        {
+            ErrorText.text = "ユーザーIDを入力してください";
+            return false;
+        }
+        else if (userId.Length < 6 || 20 < userId.Length)
+        {
+            ErrorText.text = "ユーザーIDは6文字以上20字以下の半角英数字である必要があります";
+            return false;
+        }
+        return true;
+    }
+
 
     /// <summary>
     /// パスワードのバリデーション
@@ -80,14 +97,14 @@ public class Register : MonoBehaviour
     /// <summary>
     /// すでに登録済みのメールアドレスは使用不可
     /// </summary>
-    /// <param name="email"></param>
+    /// <param name="userId"></param>
     /// <param name="password"></param>
     /// <returns></returns>
 
-    private IEnumerator SendRegisterRequest(string email, string password)
+    private IEnumerator SendRegisterRequest(string userId, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("login_id", email);
+        form.AddField("login_id", userId);
         form.AddField("password", password);
 
         using (UnityWebRequest www = UnityWebRequest.Post(config.BASE_URL + "/auth/signup", form))
@@ -113,10 +130,11 @@ public class Register : MonoBehaviour
     private void HandleError(string jsonResponse)
     {
         ErrorType error = JsonUtility.FromJson<ErrorType>(jsonResponse);
+        Debug.Log(error);
         string errorType = error.type;
         if (errorType.Equals("validation"))
         {
-            ErrorText.text = "このメールアドレスは既に登録されています";
+            ErrorText.text = "このユーザーIDは既に登録されています";
         }
     }
 }

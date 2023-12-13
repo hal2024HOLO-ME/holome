@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 61081426}
   - component: {fileID: 61081425}
   m_Layer: 0
-  m_Name: EmailText
+  m_Name: UserIdText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9/Email"
+  m_text: "\u30E6\u30FC\u30B6\u30FCID/UserID"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e418d95bbd4be444082bb3e0221f2180, type: 2}
   m_sharedMaterial: {fileID: -125273691866926212, guid: e418d95bbd4be444082bb3e0221f2180, type: 2}
@@ -623,7 +623,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1504185824}
     m_Modifications:
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
@@ -663,11 +663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4139
+      value: -0.17610002
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.311
+      value: -0.009000003
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -735,6 +735,11 @@ PrefabInstance:
 --- !u!1 &548047431 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8829903863008004601, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
+  m_PrefabInstance: {fileID: 548047430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &548047432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
   m_PrefabInstance: {fileID: 548047430}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &548047443
@@ -1076,7 +1081,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1504185824}
     m_Modifications:
     - target: {fileID: 8174955776655707806, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
@@ -1116,11 +1121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4139
+      value: -0.17610002
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.311
+      value: -0.009000003
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1190,6 +1195,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8829903863008004601, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
   m_PrefabInstance: {fileID: 964013634}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &964013636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
+  m_PrefabInstance: {fileID: 964013634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &964013647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ae54ef77022984bbc29549b9675384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailInputField: {fileID: 1378757869}
+  userIdInputField: {fileID: 1378757869}
   passwordInputField: {fileID: 1232108767}
   confirmPasswordInputField: {fileID: 1024569202}
   ErrorText: {fileID: 1970391948}
@@ -1528,7 +1538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1258590076, guid: eb09b69877e5a0640bf7848951358508, type: 3}
       propertyPath: m_Name
-      value: EmailInputField
+      value: UserIdInputField
       objectReference: {fileID: 0}
     - target: {fileID: 1765799051758416192, guid: eb09b69877e5a0640bf7848951358508, type: 3}
       propertyPath: m_Size.x
@@ -1632,7 +1642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1765799051758416218, guid: eb09b69877e5a0640bf7848951358508, type: 3}
       propertyPath: m_Name
-      value: MRTKUGUIInputField_Email
+      value: MRTKUGUIInputField_UserId
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1755,6 +1765,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1226619383}
+    - targetCorrespondingSourceObject: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 548047432}
+    - targetCorrespondingSourceObject: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 964013636}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6406055597923527085, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       insertIndex: -1
@@ -2265,5 +2281,3 @@ SceneRoots:
   - {fileID: 78103910}
   - {fileID: 1033001200}
   - {fileID: 1504185823}
-  - {fileID: 548047430}
-  - {fileID: 964013634}
