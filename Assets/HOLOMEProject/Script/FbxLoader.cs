@@ -118,7 +118,8 @@ public class FbxLoader : MonoBehaviour
     private void SetInitSize(GameObject childObject)
     {
         // 初期位置
-        childObject.transform.position = new Vector3(0, 4, 10);
+        childObject.transform.position = new Vector3(-1, 0, 10);
+        childObject.transform.rotation = Quaternion.Euler(0, 180f, 0);
         // 初期サイズ
         childObject.transform.localScale = new Vector3(1, 1, 1);
     }
