@@ -71,19 +71,19 @@ public class NostalgicManager : MonoBehaviour
         switch (nostalgicStage)
         {
             case 1:
-                vector3 = new(0.1f, 0.1f, 0.1f);
+                vector3 = new(0.025f, 0.025f, 0.025f);
                 break;
             case 2:
-                vector3 = new(0.5f, 0.5f, 0.5f);
+                vector3 = new(0.05f, 0.05f, 0.05f);
                 break;
             case 3:
-                vector3 = new(1f, 1f, 1f);
+                vector3 = new(0.1f, 0.1f, 0.1f);
                 break;
             case 4:
-                vector3 = new(1.5f, 1.5f, 1.5f);
+                vector3 = new(0.2f, 0.2f, 0.2f);
                 break;
             case 5:
-                vector3 = new(2f, 2f, 2f);
+                vector3 = new(0.3f, 0.3f, 0.3f);
                 break;
         }
         // スムーズにサイズを変更する。
