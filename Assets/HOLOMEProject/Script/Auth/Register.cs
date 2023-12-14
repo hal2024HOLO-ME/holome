@@ -1,10 +1,8 @@
 using MixedReality.Toolkit.UX;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
-using UnityEditor.PackageManager;
 
 public class Register : MonoBehaviour
 {
@@ -57,6 +55,11 @@ public class Register : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ユーザーIDのバリデーション
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     private bool IsUserIdValid(string userId)
     {
         if(userId == null)
