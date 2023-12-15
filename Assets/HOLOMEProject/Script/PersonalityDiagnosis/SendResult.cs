@@ -16,6 +16,7 @@ public class SendResult : MonoBehaviour
     public TextMeshPro ResultContents;
     public TextMeshPro ResultBelowText;
     public SpriteRenderer characterImageRenderer;
+    public SpriteRenderer characterNameSlateImageRenderer;
 
     private static Config config;
 
@@ -94,13 +95,13 @@ public class SendResult : MonoBehaviour
         responseFileName = response.model_name;
         responseCharacterName = response.name.Replace(" ", "");
 
-
         ResultTitle.text = "あなたは「 " + responseCharacterName + "タイプ」です！";
         ResultContents.text = response.description;
         ResultBelowText.text = "そんなあなたのパートナーは" + responseCharacterName  + "です";
 
         Sprite newSprite = Resources.Load<Sprite>("Images/" + responseFileName);
         characterImageRenderer.sprite = newSprite;
+        characterNameSlateImageRenderer.sprite = newSprite;
 
         slate.SetActive(false);
         personalityDiagnosisResultSlate.SetActive(true);
@@ -108,7 +109,7 @@ public class SendResult : MonoBehaviour
 
     /// <summary>
     /// 性格診断のYes/Noの数と対象のキャラクターを紐付ける
-    /// TODO: いぬの確率たかい・・・
+    /// NOTE: いぬの確率たかい・・・
     /// </summary>
     /// <param name="answerCount"></param>
     /// <returns></returns>
