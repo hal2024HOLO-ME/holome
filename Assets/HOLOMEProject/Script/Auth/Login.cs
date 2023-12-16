@@ -63,6 +63,8 @@ public class Login : MonoBehaviour
         form.AddField("login_id", userId);
         form.AddField("password", password);
 
+        // NOTE: ローカルでBEを起動している場合は下記のURLを使用する
+        // using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:3001/api/v1/auth/signin", form))
         using (UnityWebRequest www = UnityWebRequest.Post(config.BASE_URL + "/auth/signin", form))
         {
             yield return www.SendWebRequest();
