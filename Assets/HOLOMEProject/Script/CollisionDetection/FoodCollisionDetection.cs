@@ -64,6 +64,7 @@ public class FoodCollisionDetection : MonoBehaviour
                 { "MiiVerGhost", new Vector3(0.0f, 0.0f, 0.0f) },
                 { "Holo", new Vector3(0.0f, 0.0f, 0.0f) },
                 { "TanukiVerNormal", new Vector3(0.0f, -90f, 0.0f) },
+                { "TanukiVerGhost", new Vector3(0.0f, -90f, 0.0f) },
             };
 
             // 移動する方向に向く
