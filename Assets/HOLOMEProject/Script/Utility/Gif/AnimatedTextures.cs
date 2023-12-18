@@ -15,6 +15,9 @@ public class AnimatedTextures : MonoBehaviour
 
     void Start()
     {
+        this.Filename = new SendResult().GetResponseFileName() + ".gif";
+
+
         if (string.IsNullOrWhiteSpace(Filename))
         {
             return;
