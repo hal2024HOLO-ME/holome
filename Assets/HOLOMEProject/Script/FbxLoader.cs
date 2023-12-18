@@ -30,7 +30,7 @@ public class FbxLoader : MonoBehaviour
     {
         // 指定したファイルへのパスからFBXファイルを読み込む。
         // Resources/Object/以下に配置すること。
-        GameObject fbxObject = Resources.Load<GameObject>("Object/" + gameObjectName);
+        GameObject fbxObject = Resources.Load<GameObject>(gameObjectName);
 
         if (fbxObject != null )
         {
@@ -38,22 +38,82 @@ public class FbxLoader : MonoBehaviour
             GameObject generatedObject = Instantiate(fbxObject);
             generatedObject.name = gameObjectName;
 
-            Dictionary<string, (string[], string[])> gameObjectList = new()
+            Dictionary<string, (string[] addRigidBodyAndBoxCollider, string[] initDisplayOject)> gameObjectList = new()
                 {
-                    { "MiiVerNormal", (new string[] {"body", "head"} , new String[]{ })},
-                    { "MiiVerGhost", (new string[] {"body", "head"} , new String[]{"body", "head", "eye", "ear", "obj1", "アーマチュア"})},
-                    { "TanukiVerNormal", (new string[] { "body", "face" }, new String[]{}) },
+                    { "MiiVerNormal", (new string[] {"body", "head"} , new String[]{
+                        "body",
+                        "head",
+                        "eye",
+                        "ear",
+                        "obj1",
+                        "アーマチュア"
+                    })},
+                    { "MiiVerGhost", (new string[] {"body", "head"} , new String[]{
+                        "body",
+                        "head",
+                        "eye",
+                        "ear",
+                        "obj1",
+                        "アーマチュア"
+                    })},
+                    { "TanukiVerNormal", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1.001",
+                        "obj2",
+                        "obj5.001",
+                        "obj5.002",
+                        "obj5.003",
+                        "obj_body",
+                        "obj_head",
+                        "アーマチュア",
+                    })},
+                    { "TanukiVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1.001",
+                        "obj2",
+                        "obj5.001",
+                        "obj5.002",
+                        "obj5.003",
+                        "obj_body",
+                        "obj_head",
+                        "アーマチュア",
+                    })},
+                    { "CatVerNormal", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1",
+                        "obj4",
+                        "アーマチュア.001",
+                    })},
+                    { "CatVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "body1",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1",
+                        "obj4",
+                        "アーマチュア.001",
+                    })},
                 };
             foreach (Transform child in generatedObject.transform)
             {
                 // childのnameがgameObjectNameList[gameObjectName]に含まれているかどうか。
-                if (Array.Exists(gameObjectList[gameObjectName].Item1, element => element == child.name))
+                if (Array.Exists(gameObjectList[gameObjectName].addRigidBodyAndBoxCollider, element => element == child.name))
                 {
                     child.gameObject.AddComponent<BoxCollider>();
                     AddRigidBody(child.gameObject);
                 }
 
-                if (!Array.Exists(gameObjectList[gameObjectName].Item2, element => element == child.name))
+                if (!Array.Exists(gameObjectList[gameObjectName].initDisplayOject, element => element == child.name))
                 {
                     child.gameObject.SetActive(false);
                 }
@@ -121,6 +181,6 @@ public class FbxLoader : MonoBehaviour
         childObject.transform.position = new Vector3(-1, 0, 10);
         childObject.transform.rotation = Quaternion.Euler(0, 180f, 0);
         // 初期サイズ
-        childObject.transform.localScale = new Vector3(1, 1, 1);
+        childObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 }
