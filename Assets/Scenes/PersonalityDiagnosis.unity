@@ -441,7 +441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Q2. \u3076\u3063\u3061\u3083\u3051\u732B\u3092\u304B\u3076\u3063\u3066\u3044\u308B\uFF08Yes/No\uFF09\n"
+  m_text: "Q2. \u6B63\u76F4\u8A00\u3046\u3068\u732B\u3092\u304B\u3076\u3063\u3066\u3044\u308B\uFF08Yes/No\uFF09\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e418d95bbd4be444082bb3e0221f2180, type: 2}
   m_sharedMaterial: {fileID: -125273691866926212, guid: e418d95bbd4be444082bb3e0221f2180, type: 2}

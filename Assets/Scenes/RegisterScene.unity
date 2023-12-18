@@ -663,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17610002
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1121,7 +1121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17610002
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8829903862454882072, guid: b97ac347513aa6742be756b1e2884dfd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1689,6 +1689,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.0227
       objectReference: {fileID: 0}
+    - target: {fileID: 1283771337024747118, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1379536339617406536, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       propertyPath: m_text
       value: "\u30B5\u30A4\u30F3\u30A2\u30C3\u30D7/SIGN UP"
@@ -1773,21 +1777,6 @@ PrefabInstance:
       addedObject: {fileID: 964013636}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6406055597923527085, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1311517368851435787, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6599014034041732059, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 295619107062559783, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7575726316832662508, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 375404210672249865, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
