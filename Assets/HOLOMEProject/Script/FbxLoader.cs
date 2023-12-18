@@ -1,84 +1,164 @@
 using System;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 /// <summary>
 /// オブジェクトの生成を行う。
 /// </summary>
-public class FbxLoader : MonoBehaviour
+public class FbxLoader : MonoBehaviourPunCallbacks
 {
     private string gameObjectName;
     public GameObject Food;
     public GameObject Brush;
-
-    // getter and setter
-    public string GetGameObjectName()
+    private void Start()
     {
-        return gameObjectName;
+        // プレイヤー自身の名前を"Player"に設定する
+        PhotonNetwork.NickName = "Player";
+
+        // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+    /// <summary>
+    ///vマスターサーバーへの接続が成功した時に呼ばれるコールバック 
+    /// </summary>
+    public override void OnConnectedToMaster()
+    {
+        // "Room"という名前のルームに参加する（ルームが存在しなければ作成して参加する）
+        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+        Debug.Log("サーバーに接続しました。。");
+    }
+
+    // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
+    public override void OnJoinedRoom()
+    {
+        // HoloLensのカメラの位置を取得
+        Transform mainCameraTransform = Camera.main.transform;
+
+
+        if (mainCameraTransform != null)
+        {
+            // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
+            Vector3 position = new Vector3(0f, 0.9f, -9.6f);
+            Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
+
+            GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, position, rotation);
+
+            if (gameObject != null)
+            {
+                gameObject.name = gameObjectName;
+                Dictionary<string, (string[] addRigidBodyAndBoxCollider, string[] initDisplayOject)> gameObjectList = new()
+                {
+                    { "MiiVerNormal", (new string[] {"body", "head"} , new String[]{
+                        "body",
+                        "head",
+                        "eye",
+                        "ear",
+                        "obj1",
+                        "アーマチュア"
+                    })},
+                    { "MiiVerGhost", (new string[] {"body", "head"} , new String[]{
+                        "body",
+                        "head",
+                        "eye",
+                        "ear",
+                        "obj1",
+                        "アーマチュア"
+                    })},
+                    { "TanukiVerNormal", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1.001",
+                        "obj2",
+                        "obj5.001",
+                        "obj5.002",
+                        "obj5.003",
+                        "obj_body",
+                        "obj_head",
+                        "アーマチュア",
+                    })},
+                    { "TanukiVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1.001",
+                        "obj2",
+                        "obj5.001",
+                        "obj5.002",
+                        "obj5.003",
+                        "obj_body",
+                        "obj_head",
+                        "アーマチュア",
+                    })},
+                    { "CatVerNormal", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1",
+                        "obj4",
+                        "アーマチュア.001",
+                    })},
+                    { "CatVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "body1",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1",
+                        "obj4",
+                        "アーマチュア.001",
+                    })},
+                };
+                foreach (Transform child in gameObject.transform)
+                {
+                    // childのnameがgameObjectNameList[gameObjectName]に含まれているかどうか。
+                    if (Array.Exists(gameObjectList[gameObjectName].addRigidBodyAndBoxCollider, element => element == child.name))
+                    {
+                        child.gameObject.AddComponent<BoxCollider>();
+                        AddRigidBody(child.gameObject);
+                    }
+
+                    if (!Array.Exists(gameObjectList[gameObjectName].initDisplayOject, element => element == child.name))
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+
+                AddAnimatorController(gameObject);
+
+                CharacterModel characterModel = AddCharacterModel(gameObject);
+                SetInitSize(characterModel.GetGameObject());
+
+                FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
+                foodCollisionDetection.SetCharacterModel(characterModel);
+
+                BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
+                brushCollisionDetection.SetCharacterModel(characterModel);
+
+                gameObject.AddComponent<HealthMonitor>();
+                gameObject.AddComponent<AnimationTimer>();
+                gameObject.AddComponent<NostalgicManager>();
+            }
+            else
+            {
+                Debug.LogError("FBXファイルが見つかりません: " + gameObjectName);
+            }
+        }
+        else
+        {
+            Debug.LogError("メインカメラがありません");
+        }
     }
 
     public void SetGameObjectName(string value)
     {
         gameObjectName = value;
-    }
-
-
-    /// <summary>
-    /// オブジェクトを生成し、Hierarchyに追加する。
-    /// </summary>
-    public void GenerateObject()
-    {
-        // 指定したファイルへのパスからFBXファイルを読み込む。
-        // Resources/Object/以下に配置すること。
-        GameObject fbxObject = Resources.Load<GameObject>("Object/" + gameObjectName);
-
-        if (fbxObject != null )
-        {
-            // FBXをHierarchyに追加する
-            GameObject generatedObject = Instantiate(fbxObject);
-            generatedObject.name = gameObjectName;
-
-            Dictionary<string, (string[], string[])> gameObjectList = new()
-                {
-                    { "MiiVerNormal", (new string[] {"body", "head"} , new String[]{ })},
-                    { "MiiVerGhost", (new string[] {"body", "head"} , new String[]{"body", "head", "eye", "ear", "obj1", "アーマチュア"})},
-                    { "TanukiVerNormal", (new string[] { "body", "face" }, new String[]{}) },
-                };
-            foreach (Transform child in generatedObject.transform)
-            {
-                // childのnameがgameObjectNameList[gameObjectName]に含まれているかどうか。
-                if (Array.Exists(gameObjectList[gameObjectName].Item1, element => element == child.name))
-                {
-                    child.gameObject.AddComponent<BoxCollider>();
-                    AddRigidBody(child.gameObject);
-                }
-
-                if (!Array.Exists(gameObjectList[gameObjectName].Item2, element => element == child.name))
-                {
-                    child.gameObject.SetActive(false);
-                }
-            }
-
-            AddAnimatorController(generatedObject);
-
-
-            CharacterModel characterModel = AddCharacterModel(generatedObject);
-            SetInitSize(characterModel.GetGameObject());
-
-            FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
-            foodCollisionDetection.SetCharacterModel(characterModel);
-
-            BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
-            brushCollisionDetection.SetCharacterModel(characterModel);
-
-            generatedObject.AddComponent<HealthMonitor>();
-            generatedObject.AddComponent<AnimationTimer>();
-            generatedObject.AddComponent<NostalgicManager>();
-        }
-        else
-        {
-            Debug.LogError("FBXファイルが見つかりません: " + gameObjectName);
-        }
     }
 
     /// <summary>
@@ -121,6 +201,6 @@ public class FbxLoader : MonoBehaviour
         childObject.transform.position = new Vector3(-1, 0, 10);
         childObject.transform.rotation = Quaternion.Euler(0, 180f, 0);
         // 初期サイズ
-        childObject.transform.localScale = new Vector3(1, 1, 1);
+        childObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 }
