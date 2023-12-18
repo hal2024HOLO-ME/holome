@@ -14492,7 +14492,7 @@ GameObject:
   - component: {fileID: 1449477798}
   - component: {fileID: 1449477801}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Loading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14567,7 +14567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2623c5e711a82145be7f70a16d78a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: TanukiVerGhost.gif
   FrameDelay: 0.07
 --- !u!1 &1454284875
 GameObject:

@@ -6,9 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class AnimatedImage : MonoBehaviour
 {
-    [SerializeField, Header("Relative path from StreamingAssets folder")] private string filePath;
-    public float FrameDelay = 0.07f; // 新しいパブリック変数を追加します。
-
+    private string filePath;
+    public float FrameDelay = 0.07f;
     private Image _image;
 
     private readonly List<Sprite> _frames = new List<Sprite>();
@@ -19,6 +18,12 @@ public class AnimatedImage : MonoBehaviour
 
     private void Start()
     {
+        /// <summary>
+        /// NOTE: TanukiVerGhostがくるまで確認用のコード残す
+        /// </summary>
+        this.filePath = new SendResult().GetResponseFileName() + ".gif";
+        // this.filePath = "TanukiVerGhost.gif";
+
         if (string.IsNullOrWhiteSpace(filePath)) return;
         _image = GetComponent<Image>();
 
@@ -28,10 +33,11 @@ public class AnimatedImage : MonoBehaviour
         {
             var img = decoder.NextImage();
 
+            // 全てのフレームで一定の遅延時間を設定
             while (img != null)
             {
                 _frames.Add(Texture2DtoSprite(img.CreateTexture()));
-                _frameDelay.Add(FrameDelay); // 全てのフレームで一定の遅延時間を設定します。
+                _frameDelay.Add(FrameDelay);
                 img = decoder.NextImage();
             }
         }
