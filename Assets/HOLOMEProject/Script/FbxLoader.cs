@@ -28,8 +28,6 @@ public class FbxLoader : MonoBehaviour
     /// </summary>
     public void GenerateObject()
     {
-        // 指定したファイルへのパスからFBXファイルを読み込む。
-        // Resources/Object/以下に配置すること。
         GameObject fbxObject = Resources.Load<GameObject>(gameObjectName);
 
         if (fbxObject != null )
