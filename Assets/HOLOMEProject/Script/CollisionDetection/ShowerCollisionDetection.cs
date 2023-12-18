@@ -5,7 +5,7 @@ public class ShowerCollisionDetection : MonoBehaviour
 {
     public GameObject showerObject;
     /// <summary>
-    /// ブラシが使用できるかどうかを表すフラグ。
+    /// シャワーが使用できるかどうかを表すフラグ。
     /// </summary>
     public static bool isShowerUsed = true;
     private CharacterModel characterModel;
