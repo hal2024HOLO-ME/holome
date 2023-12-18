@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5170,15 +5170,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834951845}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.21, y: 0.67, z: 2.3}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1543140957}
   - {fileID: 871156070}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &834951851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6120,6 +6120,8 @@ GameObject:
   - component: {fileID: 969626871}
   - component: {fileID: 969626869}
   - component: {fileID: 969626870}
+  - component: {fileID: 969626872}
+  - component: {fileID: 969626873}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -9713,9 +9715,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -9890,7 +9892,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -10938,6 +10940,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871156070}
   m_LocalEulerAnglesHint: {x: 30.234, y: 180, z: 0}
+--- !u!114 &969626872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969626868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09f7c536db6103459876c045bacb6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p_HitPositionNotice:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &969626873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969626868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32120eae68c153e43bb20758cbdeffd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showerObject: {fileID: 0}
 --- !u!1001 &999075388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16091,6 +16121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Food: {fileID: 402292103}
   Brush: {fileID: 1552858040}
+  Shower: {fileID: 969626869}
 --- !u!4 &1703497123
 Transform:
   m_ObjectHideFlags: 0
