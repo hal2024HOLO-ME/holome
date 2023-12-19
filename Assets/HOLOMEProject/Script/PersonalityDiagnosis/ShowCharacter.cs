@@ -20,7 +20,7 @@ public class ShowCharacter : MonoBehaviour
         // 初期化処理
         gameObjectName = new SendResult().GetResponseFileName();
         GameObject generateObject = GameObject.Find("GenerateObject");
-        quadGif = GameObject.Find("QuadGif");
+        quadGif = GameObject.Find("Quad");
 
         FbxLoader fbxLoader = generateObject.GetComponent<FbxLoader>();
         fbxLoader.SetGameObjectName(gameObjectName);

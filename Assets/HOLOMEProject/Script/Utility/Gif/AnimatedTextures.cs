@@ -16,6 +16,7 @@ public class AnimatedTextures : MonoBehaviour
     void Start()
     {
         this.Filename = new SendResult().GetResponseFileName() + ".gif";
+        // this.Filename = "TanukiVerGhost.gif";
 
 
         if (string.IsNullOrWhiteSpace(Filename))

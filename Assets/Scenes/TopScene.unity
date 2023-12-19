@@ -1151,7 +1151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.241
+      value: 0.307
       objectReference: {fileID: 0}
     - target: {fileID: 6612599088134562825, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1201,21 +1201,6 @@ PrefabInstance:
       addedObject: {fileID: 1439173108}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6406055597923527085, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1311517368851435787, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6599014034041732059, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 295619107062559783, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7575726316832662508, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 375404210672249865, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9f64112b24fed0842918ca20dabf1618, type: 3}
