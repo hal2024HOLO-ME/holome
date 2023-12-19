@@ -28,7 +28,6 @@ public class ShowCharacter : MonoBehaviour
         // 2秒ロードしてからモデルを生成する
         Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => {
             quadGif.SetActive(false);
-            fbxLoader.GenerateObject();
          });
     }
 }
