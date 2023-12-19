@@ -7,7 +7,7 @@ using System;
 public class ShowCharacter : MonoBehaviour
 {
     private string gameObjectName;
-    private GameObject canvasGif;
+    private GameObject quadGif;
 
     /// <summary>
     /// 「会いに行く」ボタンをクリック時に発火
@@ -20,14 +20,14 @@ public class ShowCharacter : MonoBehaviour
         // 初期化処理
         gameObjectName = new SendResult().GetResponseFileName();
         GameObject generateObject = GameObject.Find("GenerateObject");
-        canvasGif = GameObject.Find("CanvasGif");
+        quadGif = GameObject.Find("Quad");
 
         FbxLoader fbxLoader = generateObject.GetComponent<FbxLoader>();
         fbxLoader.SetGameObjectName(gameObjectName);
 
         // 2秒ロードしてからモデルを生成する
         Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => {
-            canvasGif.SetActive(false);
-        });
+            quadGif.SetActive(false);
+         });
     }
 }
