@@ -12,14 +12,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     private string gameObjectName;
     public GameObject Food;
     public GameObject Brush;
-<<<<<<< HEAD
-    private void Start()
-=======
     public ParticleSystem Shower;
 
-    // getter and setter
-    public string GetGameObjectName()
->>>>>>> 4de6b04 (add: シャワーの当たり判定)
+    private void Start()
     {
         // プレイヤー自身の名前を"Player"に設定する
         PhotonNetwork.NickName = "Player";
@@ -159,28 +154,6 @@ public class FbxLoader : MonoBehaviourPunCallbacks
             {
                 Debug.LogError("FBXファイルが見つかりません: " + gameObjectName);
             }
-<<<<<<< HEAD
-=======
-
-            AddAnimatorController(generatedObject);
-
-
-            CharacterModel characterModel = AddCharacterModel(generatedObject);
-            SetInitSize(characterModel.GetGameObject());
-
-            FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
-            foodCollisionDetection.SetCharacterModel(characterModel);
-
-            BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
-            brushCollisionDetection.SetCharacterModel(characterModel);
-
-            ShowerCollisionDetection showerCollisionDetection = Shower.GetComponent<ShowerCollisionDetection>();
-            showerCollisionDetection.SetCharacterModel(characterModel);
-
-            generatedObject.AddComponent<HealthMonitor>();
-            generatedObject.AddComponent<AnimationTimer>();
-            generatedObject.AddComponent<NostalgicManager>();
->>>>>>> 4de6b04 (add: シャワーの当たり判定)
         }
         else
         {
