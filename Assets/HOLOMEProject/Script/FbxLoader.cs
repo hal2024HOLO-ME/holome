@@ -12,6 +12,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     private string gameObjectName;
     public GameObject Food;
     public GameObject Brush;
+    public ParticleSystem Shower;
+
     private void Start()
     {
         // プレイヤー自身の名前を"Player"に設定する
@@ -140,6 +142,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
 
                 BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
                 brushCollisionDetection.SetCharacterModel(characterModel);
+
+                ShowerCollisionDetection showerCollisionDetection = Shower.GetComponent<ShowerCollisionDetection>();
+                showerCollisionDetection.SetCharacterModel(characterModel);
 
                 gameObject.AddComponent<HealthMonitor>();
                 gameObject.AddComponent<AnimationTimer>();
