@@ -36,17 +36,21 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        // HoloLensのカメラの位置を取得
-        Transform mainCameraTransform = Camera.main.transform;
+        // Main Cameraを検索して取得
+        Camera mainCamera = Camera.main;
 
 
-        if (mainCameraTransform != null)
+        if (mainCamera != null)
         {
-            // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
-            Vector3 position = new Vector3(0f, 0.9f, -9.6f);
+            // Main Cameraが向いている方向を取得
+            Vector3 cameraForward = mainCamera.transform.forward;
+            // Main Cameraの座標を取得
+            Vector3 cameraPosition = mainCamera.transform.position;
+            // Main Cameraの方向に0.5だけ進んだ位置を計算
+            Vector3 spawnPosition = cameraPosition + cameraForward * 0.5f;
             Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
 
-            GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, position, rotation);
+            GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, spawnPosition, rotation);
 
             if (gameObject != null)
             {
@@ -203,7 +207,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     private void SetInitSize(GameObject childObject)
     {
         // 初期位置
-        childObject.transform.position = new Vector3(-1, 0, 10);
+        //childObject.transform.position = new Vector3(-1, 0, 10);
         childObject.transform.rotation = Quaternion.Euler(0, 180f, 0);
         // 初期サイズ
         childObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
