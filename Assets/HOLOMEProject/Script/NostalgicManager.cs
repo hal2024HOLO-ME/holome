@@ -2,6 +2,8 @@ using UnityEngine;
 using UniRx;
 using System;
 
+using Const;
+
 public class NostalgicManager : MonoBehaviour
 {
     private CharacterModel characterModel;
@@ -10,22 +12,30 @@ public class NostalgicManager : MonoBehaviour
     /// </summary>
     private IDisposable minuteTimeTrigger;
 
-
     private void Awake()
     {
         characterModel = gameObject.GetComponent<CharacterModel>();
         HealthMonitor healthMonitor = gameObject.GetComponent<HealthMonitor>();
+        KillCharacterModel();
+
         // 現在時刻から10分ごとに処理を実行
         minuteTimeTrigger = Observable
             .Timer(TimeSpan.FromMinutes(10.0f - DateTime.Now.Minute % 10), TimeSpan.FromMinutes(10.0f))
             .SubscribeOnMainThread()
             .Subscribe(x =>
             {
-                if (healthMonitor.CheckSleepTime()) return;
+                if (healthMonitor.CheckSleepTime() || characterModel.GetIsDead()) return;
                 int nostalgicStage = GetNostalgicStage();
                 DecreaseNostalgicLevel();
                 if (nostalgicStage != GetNostalgicStage())
+                {
                     ChangeObjectSize();
+                }
+                // 懐き度が1の段階になったら、死亡させる。
+                if (GetNostalgicStage() == 1)
+                {
+                    KillCharacterModel();
+                }
             })
             .AddTo(this);
     }
@@ -54,9 +64,9 @@ public class NostalgicManager : MonoBehaviour
     {
         int nostalgicLevel = characterModel.GetNostalgicLevel();
 
-        if (nostalgicLevel < CharacterModel.MIN_NOSTALGIC_LEVEL) return 1;
+        if (nostalgicLevel < CO.MIN_NOSTALGIC_LEVEL) return 1;
 
-        if (nostalgicLevel > CharacterModel.MAX_NOSTALGIC_LEVEL) return 5;
+        if (nostalgicLevel > CO.MAX_NOSTALGIC_LEVEL) return 5;
 
         return Mathf.CeilToInt(nostalgicLevel / 20.0f);
     }
@@ -89,6 +99,22 @@ public class NostalgicManager : MonoBehaviour
         // スムーズにサイズを変更する。
         characterModel.GetGameObject().transform.localScale = 
             Vector3.Lerp(characterModel.GetGameObject().transform.localScale, vector3, 1f);
+    }
+
+    ///<summary>
+    /// 懐き度の段階が１の段階でcharacterModelを死亡させる。アニメーションなども発火させないようにする。
+    /// </summary>
+    public void KillCharacterModel()
+    {
+        GameObject gameObject = characterModel.GetGameObject();
+
+        GameObject angelRingObject = gameObject.transform.Find("angelRing").gameObject;
+        angelRingObject.SetActive(true);
+
+        Animator animator = gameObject.GetComponent<Animator>();
+        animator.SetBool(CO.ANIMATOR_BOOL_DEAD, true);
+
+        characterModel.SetIsDead(true);
     }
 
     /// <summary>
