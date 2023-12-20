@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f1c89bf8c43675443a1e5a0672f96d4e, type: 3}
       propertyPath: m_Name
-      value: TanukiVerGhost
+      value: TanukiVerNormal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
