@@ -151,7 +151,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                 showerCollisionDetection.SetCharacterModel(characterModel);
 
                 gameObject.AddComponent<HealthMonitor>();
-                gameObject.AddComponent<AnimationTimer>();
+                AnimationTimer animationTimer = gameObject.AddComponent<AnimationTimer>();
+                animationTimer.SetCharacterModel(characterModel);
                 gameObject.AddComponent<NostalgicManager>();
             }
             else
