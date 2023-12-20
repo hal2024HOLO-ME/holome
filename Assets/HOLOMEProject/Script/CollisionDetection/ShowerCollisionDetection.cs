@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShowerCollisionDetection : MonoBehaviour
 {
     public GameObject showerObject;
+     bool isCollisionAndshowerUsed = isShowerUsed;
     /// <summary>
     /// シャワーが使用できるかどうかを表すフラグ。
     /// </summary>
@@ -23,15 +24,12 @@ public class ShowerCollisionDetection : MonoBehaviour
     {
         StartCoroutine(HandleCollision(collision));
     }
-    /// <summary>
-    /// FIXME:bool型isShowerUsedがHandleCollision入るとfalseになる(Logで確認済み)、if外して強制trueで成長確認済み
-    /// </summary>
+    
     /// <param name="collision"></param>
     /// <returns></returns>
     private IEnumerator HandleCollision(GameObject collision)
     {
-        bool isCollisionAndshowerUsed = isShowerUsed;
-        if (isCollisionAndshowerUsed)
+        if (this.isCollisionAndshowerUsed)
         {
             Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
             animator.SetTrigger("HappyTrigger");
