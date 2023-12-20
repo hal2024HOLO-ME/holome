@@ -16,7 +16,6 @@ public class NostalgicManager : MonoBehaviour
     {
         characterModel = gameObject.GetComponent<CharacterModel>();
         HealthMonitor healthMonitor = gameObject.GetComponent<HealthMonitor>();
-        KillCharacterModel();
 
         // Œ»İ‚©‚ç10•ª‚²‚Æ‚Éˆ—‚ğÀs
         minuteTimeTrigger = Observable
