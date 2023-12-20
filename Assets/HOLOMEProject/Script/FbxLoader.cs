@@ -120,6 +120,15 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                         "obj4",
                         "アーマチュア.001",
                     })},
+                    { "KitsuneVerNormal", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "face1",
+                        "face2",
+                        "アーマチュア",
+                    })},
                 };
                 foreach (Transform child in gameObject.transform)
                 {
