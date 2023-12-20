@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3445636970730233272
+--- !u!1001 &6932416005406625135
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fedf5e44ce7b59c408456c5e7ebecfd2, type: 3}
       propertyPath: m_Name
-      value: foxVerNormal
+      value: KitsuneVerNormal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58,23 +58,23 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fedf5e44ce7b59c408456c5e7ebecfd2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4629825259394215309}
+      addedObject: {fileID: -6775162731455434656}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fedf5e44ce7b59c408456c5e7ebecfd2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5951000936877164625}
+      addedObject: {fileID: -660180202576861721}
   m_SourcePrefab: {fileID: 100100000, guid: fedf5e44ce7b59c408456c5e7ebecfd2, type: 3}
---- !u!1 &2526577941380931817 stripped
+--- !u!1 &7851333745363890238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fedf5e44ce7b59c408456c5e7ebecfd2, type: 3}
-  m_PrefabInstance: {fileID: 3445636970730233272}
+  m_PrefabInstance: {fileID: 6932416005406625135}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4629825259394215309
+--- !u!114 &-6775162731455434656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2526577941380931817}
+  m_GameObject: {fileID: 7851333745363890238}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
@@ -86,17 +86,18 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -660180202576861721}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5951000936877164625
+--- !u!114 &-660180202576861721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2526577941380931817}
+  m_GameObject: {fileID: 7851333745363890238}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
