@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 using UniRx;
-using Unity.VisualScripting;
+
+using Const;
 
 /// <summary>
 /// オブジェクトの状態を監視する。
@@ -57,18 +55,18 @@ public class HealthMonitor : MonoBehaviour
 
         bool isSleepTime = CheckSleepTime();
 
-        bool isSleepAnimator = animator.GetBool("isSleep");
+        bool isSleepAnimator = animator.GetBool(CO.ANIMATOR_BOOL_SLEEP);
         if( !isSleepTime )
         {
             if( isSleepAnimator )
             {
-                animator.SetBool("isSleep", false);
+                animator.SetBool(CO.ANIMATOR_BOOL_SLEEP, false);
             }
             return;
         }
 
         // 睡眠時刻の範囲の場合は、睡眠状態にする。
-        animator.SetBool("isSleep", true);
+        animator.SetBool(CO.ANIMATOR_BOOL_SLEEP, true);
     }
 
     /// <summary>
