@@ -38,7 +38,7 @@ public class BrushCollisionDetection : MonoBehaviour
     {
         GameObject headObject = characterModel.GetGameObject().transform.Find("head").gameObject;
 
-        bool isCollisionAndBrushUsed = collision.gameObject.name == headObject.name && isBrushUsed;
+        bool isCollisionAndBrushUsed = collision.gameObject.name == headObject.name && isBrushUsed || characterModel.GetIsDead();
         if (isCollisionAndBrushUsed ) {
             /**
                 1. charactermodelのアニメーションを再生する。

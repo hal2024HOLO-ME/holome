@@ -46,8 +46,9 @@ public class FoodCollisionDetection : MonoBehaviour
         animationTimer.SetIsTimePassed(true);
 
         bool isReadyToEat = foodAnimator.GetBool("isEat");
-        if (collision.gameObject.name == tableObject.name
-            && collision.contacts[0].normal == Vector3.up && !isReadyToEat)
+        bool isEat = collision.gameObject.name == tableObject.name
+            && collision.contacts[0].normal == Vector3.up && !isReadyToEat && !characterModel.GetIsDead();
+        if (isEat)
         {
             // Characterの現在位置を保存する。
             // ご飯を食べ終わったらもとの場所に戻すため。

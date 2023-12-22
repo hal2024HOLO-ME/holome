@@ -2,14 +2,14 @@ using UnityEngine;
 using UniRx;
 using System;
 using UniRx.Triggers;
+using Const;
 
 public class AnimationTimer : MonoBehaviour
 {
-    private Animator animator;
+    private CharacterModel characterModel;
     private HealthMonitor healthMonitor;
     private IDisposable timerAnimator = Disposable.Empty;
-    // タイマを止めるためのフラグ
-    private bool isTimePassed = false; // true: タイマーが止まっている状態
+    private bool isTimePassed = false;
 
     public void SetIsTimePassed(bool value)
     {
@@ -18,12 +18,17 @@ public class AnimationTimer : MonoBehaviour
 
     private void Awake()
     {
-        if (!gameObject.TryGetComponent(out animator)) return;
         if (!gameObject.TryGetComponent(out healthMonitor)) return;
+    }
+
+    public void SetCharacterModel(CharacterModel characterModel)
+    {
+        this.characterModel = characterModel;
     }
 
     void Start()
     {
+        Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
         ObservableStateMachineTrigger trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
 
         // Idle状態になったらタイマーをセットし、カウントダウンをする。
@@ -31,7 +36,8 @@ public class AnimationTimer : MonoBehaviour
            .OnStateEnterAsObservable()
            .Where(x => x.StateInfo.IsName("Idle"))
            .Subscribe(_ => {
-               if (!healthMonitor.CheckSleepTime() && !isTimePassed) TimerSet();
+               bool shouldPerformAction = !healthMonitor.CheckSleepTime() || !characterModel.GetIsDead() && !isTimePassed;
+               if (shouldPerformAction) TimerSet();
            }).AddTo(this);
 
         // Idle状態以外になったらタイマーを止める。
@@ -54,7 +60,7 @@ public class AnimationTimer : MonoBehaviour
 
         timerAnimator = Observable
             .Timer(TimeSpan.FromSeconds(30))
-            .Subscribe(_ => FireAnimatorTriggerWithTimer("WalkTrigger"))
+            .Subscribe(_ => FireAnimatorTriggerWithTimer())
             .AddTo(this);
     }
 
@@ -62,7 +68,11 @@ public class AnimationTimer : MonoBehaviour
     /// タイマー制約付きでアニメーションを発火させる。
     /// </summary>
     /// <param name="triggerName"></param>
-    private void FireAnimatorTriggerWithTimer(string triggerName) => animator.SetTrigger(triggerName);
+    private void FireAnimatorTriggerWithTimer()
+    {
+        Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
+        animator.SetTrigger(CO.ANIMATOR_TRIGGER_WALK);
+    }
     
 
     public void OnDestroy() => timerAnimator.Dispose();

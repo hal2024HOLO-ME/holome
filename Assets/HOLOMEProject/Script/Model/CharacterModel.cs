@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+using Const;
+
 public class CharacterModel : MonoBehaviour
 {
     private new GameObject gameObject;
@@ -9,13 +11,10 @@ public class CharacterModel : MonoBehaviour
     /// </summary>
     private int nostalgicLevel = 50;
     /// <summary>
-    /// 懐き度の最大値
+    /// 死亡判定Flg
     /// </summary>
-    public const int MAX_NOSTALGIC_LEVEL = 100;
-    /// <summary>
-    /// 懐き度の最小値
-    /// </summary>
-    public const int MIN_NOSTALGIC_LEVEL = 0;
+    private bool isDead = false;
+
 
     public CharacterModel() { }
 
@@ -41,6 +40,16 @@ public class CharacterModel : MonoBehaviour
 
     public void SetNostalgicLevel(int nostalgicLevel)
     {
-        this.nostalgicLevel = Math.Clamp(nostalgicLevel, MIN_NOSTALGIC_LEVEL, MAX_NOSTALGIC_LEVEL);
+        this.nostalgicLevel = Math.Clamp(nostalgicLevel, CO.MIN_NOSTALGIC_LEVEL, CO.MAX_NOSTALGIC_LEVEL);
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
+    public void SetIsDead(bool isDead)
+    {
+        this.isDead = isDead;
     }
 }
