@@ -50,6 +50,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
             Vector3 spawnPosition = cameraPosition + cameraForward * 0.5f;
             Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
 
+            Debug.Log(gameObjectName + "を生成します。");
             GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, spawnPosition, rotation);
 
             if (gameObject != null)
@@ -128,6 +129,36 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                         "face1",
                         "face2",
                         "アーマチュア",
+                    })},       
+                    { "KitsuneVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "face1",
+                        "face2",
+                        "アーマチュア",
+                    })},
+                    { "DogVerNormal", (new string[] { "body", "face" }, new String[]{
+                        "body",
+                        "face",
+                        "ear",
+                        "obj1",
+                        "obj2",
+                        "Spiral.003",
+                        "アーマチュア",
+                    })},                    
+                    { "DogVerGhost", (new string[] { "body", "head" }, new String[]{
+                        "body",
+                        "head",
+                        "ear",
+                        "eye",
+                        "obj1",
+                        "obj2",
+                        "obj3",
+                        "obj4",
+                        "pattern",
+                        "アーマチュア",
                     })},
                 };
                 foreach (Transform child in gameObject.transform)
@@ -138,11 +169,11 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                         child.gameObject.AddComponent<BoxCollider>();
                         AddRigidBody(child.gameObject);
                     }
-
+/*
                     if (!Array.Exists(gameObjectList[gameObjectName].initDisplayOject, element => element == child.name))
                     {
                         child.gameObject.SetActive(false);
-                    }
+                    }*/
                 }
 
                 AddAnimatorController(gameObject);
