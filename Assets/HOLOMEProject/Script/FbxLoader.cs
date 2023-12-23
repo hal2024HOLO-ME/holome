@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UniRx;
 
 /// <summary>
 /// オブジェクトの生成を行う。
@@ -13,6 +14,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public GameObject Food;
     public GameObject Brush;
     public ParticleSystem Shower;
+    private GameObject quadGif;
 
     private void Start()
     {
@@ -28,14 +30,23 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnConnectedToMaster()
     {
+        quadGif = GameObject.Find("Quad");
         // "Room"という名前のルームに参加する（ルームが存在しなければ作成して参加する）
-        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+
+        Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => {
+            quadGif.SetActive(false);
+            PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+        });
         Debug.Log("サーバーに接続しました。。");
     }
 
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
+        gameObjectName = new SendResult().GetResponseFileName();
+        GameObject generateObject = GameObject.Find("GenerateObject");
+
+
         // Main Cameraを検索して取得
         Camera mainCamera = Camera.main;
 
@@ -52,7 +63,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
 
             Debug.Log(gameObjectName + "を生成します。");
             GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, spawnPosition, rotation);
-
+            
             if (gameObject != null)
             {
                 gameObject.name = gameObjectName;
