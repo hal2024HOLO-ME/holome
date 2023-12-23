@@ -8,6 +8,12 @@ public class ShowFood : MonoBehaviour
     public GameObject FoodTable;
     public void OnClickFoodButton()
     {
+        if(Food.activeSelf)
+        {
+            Food.SetActive(false);
+            FoodTable.SetActive(false);
+            return;
+        }
         Food.SetActive(true);
         FoodTable.SetActive(true);
     }
