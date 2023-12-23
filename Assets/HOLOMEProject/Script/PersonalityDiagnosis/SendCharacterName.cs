@@ -60,9 +60,9 @@ public class SendCharacterName : MonoBehaviour
         form.AddField("user_id", session);
         form.AddField("character_id", answerCount);
         form.AddField("character_name", characterName);
+        form.AddField("character_type", SelectCharacterType.characterType);
+        form.AddField("character_file_name", new SendResult().GetResponseFileName());
 
-        // NOTE: ローカルで動かす場合はこちらを使う
-        // using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:3001/api/v1/character/register", form))
         // HACK: DBへのupdateなのにPOST使ってる。wwwの仕様的に実装に時間かかる
         using (UnityWebRequest www = UnityWebRequest.Post(config.BASE_URL + "/character/register", form))
         {

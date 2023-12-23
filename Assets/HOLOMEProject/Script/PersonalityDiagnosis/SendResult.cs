@@ -54,6 +54,7 @@ public class SendResult : MonoBehaviour
     /// </summary>
     public void SendResultToServer()
     {
+        Debug.Log("session:" + Login.session);
         StartCoroutine(SendResultCoroutine());
     }
 
@@ -69,6 +70,7 @@ public class SendResult : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("character_type", SelectCharacterType.characterType);
         form.AddField("character_name", characterName);
+        form.AddField("user_id", Login.session);
 
         WWW www = new WWW(config.BASE_URL + "/diagnosis", form);
         yield return www;
