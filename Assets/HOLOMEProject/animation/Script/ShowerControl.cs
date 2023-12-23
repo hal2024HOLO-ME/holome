@@ -7,11 +7,10 @@ public class ShowerControl : MonoBehaviour
     [SerializeField] private ParticleSystem particle;
 
     /// <summary>
-    /// 起動時に勝手にparticleが発火するのを防ぐ
+    /// オブジェクトセット時に勝手にparticleが発火するのを防ぐ
     /// </summary>
-    void Start()
-    {
-       particle.Stop();  
+    void OnEnable() {
+         particle.Stop();
     }
 
 }
