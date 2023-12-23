@@ -29,7 +29,6 @@ public class ShowerCollisionDetection : MonoBehaviour
     private IEnumerator HandleCollision(GameObject collision)
     {
         isShowerUsed = true;
-        Debug.Log(isCollisionAndshowerUsed);
         if (isCollisionAndshowerUsed || characterModel.GetIsDead())
         {
             Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
