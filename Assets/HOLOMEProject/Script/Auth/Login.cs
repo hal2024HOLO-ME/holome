@@ -8,6 +8,7 @@ public class Login : MonoBehaviour
     public MRTKUGUIInputField userIdInputField;
     public MRTKUGUIInputField passwordInputField;
     public static string session;
+    private string responseSession;
 
     private static Config config;
 
@@ -75,6 +76,7 @@ public class Login : MonoBehaviour
             }
             else
             {
+                Debug.Log(www.downloadHandler.text);
                 HandleSuccessfulLogin(www.downloadHandler.text);
             }
         }
@@ -82,15 +84,28 @@ public class Login : MonoBehaviour
 
     /// <summary>
     /// BEからのレスポンスをハンドリングする
+    /// ログイン成功時、キャラクターをすでに持っていたらShowCharacterSceneに遷移
+    /// キャラクターがいないならTopSceneに遷移し性格診断する
     /// </summary>
     /// <param name="response"></param>
     private void HandleSuccessfulLogin(string response)
     {
-        session = response;
-        if (!string.IsNullOrEmpty(session))
+        responseSession = response;
+        var sessionObject = JsonUtility.FromJson<LoginResponse>(responseSession);
+
+        session = sessionObject.id;
+
+        if (sessionObject != null)
         {
-            Debug.Log("sessionが取得できた");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("TopScene");
+            if (sessionObject.isCharacterExists)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ShowCharacterScene");
+            }
+            else
+            {
+                Debug.Log("キャラクターがない");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("TopScene");
+            }
         }
         else
         {
