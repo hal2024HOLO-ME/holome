@@ -8,6 +8,7 @@ public class ShowerCollisionDetection : MonoBehaviour
     /// シャワーが使用できるかどうかを表すフラグ。
     /// </summary>
     public static bool isShowerUsed = true;
+    public bool isCollisionAndshowerUsed = isShowerUsed;
     private CharacterModel characterModel;
 
     public void SetCharacterModel(CharacterModel characterModel)
@@ -27,7 +28,7 @@ public class ShowerCollisionDetection : MonoBehaviour
     /// <returns></returns>
     private IEnumerator HandleCollision(GameObject collision)
     {
-        bool isCollisionAndshowerUsed = isShowerUsed;
+        isShowerUsed = true;
         Debug.Log(isCollisionAndshowerUsed);
         if (isCollisionAndshowerUsed || characterModel.GetIsDead())
         {
@@ -40,9 +41,10 @@ public class ShowerCollisionDetection : MonoBehaviour
             {
                 nostalgicManager.ChangeObjectSize();
             }
-            isShowerUsed = false;
+             isShowerUsed = false;
         }
         yield return null;
     }
+
 
 }
