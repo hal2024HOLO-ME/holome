@@ -14,17 +14,30 @@ public class DecorationsController : MonoBehaviour
     public GameObject neckObject;
     public GameObject headObject;
     public GameObject faceObject;
-    public String[] necklists = new[]{"bell","ribon","muffler","apron","cape"};
-    public String[] headlists = new[]{"hat","tiara","devilHone","cap","triangleHood"};
-    public String[] facelists = new[]{"beard","glasses","amulet","sanGlasses","eyepatch"};
+    private String GhostStr = "Ghost";
+    public String[] necklists = new string[5];
+    public String[] headlists = new string[5];
+    public String[] facelists = new string[5];
 
+    /// <summary>
+    /// モデルがゴーストとノーマルで首飾りの種類が違うので判定
+    /// </summary>
     void Start(){
         Debug.Log("SendResult().GetResponseFileName():" + new SendResult().GetResponseFileName());
         Debug.Log("CharacterParentObjectNameStart" + CharacterParentObjectName);
-        for(int i = 0; i < headlists.Length; i++){
-            Debug.Log(headlists[i]);
+        if(CharacterParentObjectName.Contains(GhostStr)){
+            necklists = new[]{"bell","ribon","scarf","apron","cape"};
+            headlists = new[]{"hat","tiara","devilHone","cap","triangleHood"};
+            facelists = new[]{"beard","glasses","amulet","sanGlasses","eyepatch"};
+        }else{
+            necklists = new[]{"bell","ribon","muffler","apron","cape"};
+            headlists = new[]{"hat","tiara","devilHone","cap","triangleHood"};
+            facelists = new[]{"beard","glasses","amulet","sanGlasses","eyepatch"};
         }
     }
+    /// <summary>
+    /// 首飾り
+    /// </summary>
     public void Bell(){
         parentObject = GameObject.Find(CharacterParentObjectName);
         Debug.Log("CharacterParentObjectName" + CharacterParentObjectName);
@@ -58,7 +71,7 @@ public class DecorationsController : MonoBehaviour
         parentObject = GameObject.Find(CharacterParentObjectName);
         for(int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
-            if(necklists[i] == "muffler")
+            if(necklists[i] == "muffler" || necklists[i] == "scarf")
             {
                 neckObject.SetActive(true);
             }
