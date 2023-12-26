@@ -27,9 +27,8 @@ public class ShowerCollisionDetection : MonoBehaviour
     /// <returns></returns>
     private IEnumerator HandleCollision(GameObject collision)
     {
-        bool isCollisionAndshowerUsed = isShowerUsed;
-        Debug.Log(isCollisionAndshowerUsed);
-        if (isCollisionAndshowerUsed || characterModel.GetIsDead())
+        bool isCollisionAndshowerUsed = isShowerUsed || characterModel.GetIsDead();
+        if (isCollisionAndshowerUsed)
         {
             Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
             animator.SetTrigger("HappyTrigger");
@@ -44,5 +43,6 @@ public class ShowerCollisionDetection : MonoBehaviour
         }
         yield return null;
     }
+
 
 }

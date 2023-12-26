@@ -11597,6 +11597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showerObject: {fileID: 0}
+  isCollisionAndshowerUsed: 0
 --- !u!1001 &999075388
 PrefabInstance:
   m_ObjectHideFlags: 0
