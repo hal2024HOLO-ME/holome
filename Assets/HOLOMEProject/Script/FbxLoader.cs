@@ -15,6 +15,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public GameObject Brush;
     public ParticleSystem Shower;
     private GameObject quadGif;
+    private GameObject parentPartnerTable;
+    public GameObject partnerTable;
 
     private void Start()
     {
@@ -23,6 +25,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
 
         // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();
+
+        GameObject parentPartnerTable = GameObject.Find("ParentPartnerTable");
+        partnerTable = parentPartnerTable.transform.Find("ChildPartnerTable").gameObject;
     }
 
     /// <summary>
@@ -31,8 +36,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         quadGif = GameObject.Find("Quad");
-        // "Room"という名前のルームに参加する（ルームが存在しなければ作成して参加する）
 
+        // "Room"という名前のルームに参加する（ルームが存在しなければ作成して参加する）
         Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => {
             quadGif.SetActive(false);
             PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
@@ -45,7 +50,6 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     {
         gameObjectName = new SendResult().GetResponseFileName();
         GameObject generateObject = GameObject.Find("GenerateObject");
-
 
         // Main Cameraを検索して取得
         Camera mainCamera = Camera.main;
@@ -64,6 +68,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
             Debug.Log(gameObjectName + "を生成します。");
             GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, spawnPosition, rotation);
             
+            partnerTable.transform.position = spawnPosition;
+            partnerTable.SetActive(true);
+
             if (gameObject != null)
             {
                 gameObject.name = gameObjectName;
