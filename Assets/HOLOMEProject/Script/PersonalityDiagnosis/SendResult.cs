@@ -67,12 +67,13 @@ public class SendResult : MonoBehaviour
         answerCount = PersonalityDiagnosisRadio.answerCount;
         string characterName = GetCharacterName(answerCount);
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("character_type", SelectCharacterType.characterType);
         form.AddField("character_name", characterName);
+        Debug.Log(Login.session);
         form.AddField("user_id", Login.session);
 
-        WWW www = new WWW(config.BASE_URL + "/diagnosis", form);
+        WWW www = new(config.BASE_URL + "/diagnosis", form);
         yield return www;
 
         if (www.error == null)
