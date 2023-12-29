@@ -8,9 +8,14 @@ public class Login : MonoBehaviour
     public MRTKUGUIInputField userIdInputField;
     public MRTKUGUIInputField passwordInputField;
     public static string session;
-    private string responseSession;
+    private static string responseSession;
 
     private static Config config;
+
+    public string GetResponseSession()
+    {
+        return responseSession;
+    }
 
 
     /// <summary>

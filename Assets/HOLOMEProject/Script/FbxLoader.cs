@@ -4,6 +4,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UniRx;
+using UnityEngine.Windows;
+using System.Linq;
 
 /// <summary>
 /// オブジェクトの生成を行う。
@@ -47,6 +49,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
         GameObject generateObject = GameObject.Find("GenerateObject");
 
 
+        var sessionObject = JsonUtility.FromJson<LoginResponse>(new Login().GetResponseSession());
+
         // Main Cameraを検索して取得
         Camera mainCamera = Camera.main;
 
@@ -86,6 +90,61 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                 AnimationTimer animationTimer = gameObject.AddComponent<AnimationTimer>();
                 animationTimer.SetCharacterModel(characterModel);
                 gameObject.AddComponent<NostalgicManager>();
+
+                if (!sessionObject.isCharacterExists) return;
+
+                // characterModel.SetNostalgicLevel(character_data.nostalgic_level);
+                const string jsonData = @"
+                        {
+                            ""character_data"": {
+                                ""color"": {
+                                    ""eye"": ""1.000, 0.000, 0.000, 0.00"",
+                                    ""ear"": ""1.000, 0.000, 0.000, 0.000"",
+                                    ""body"": ""1.000, 0.000, 0.000, 0.000""
+                                },
+                                ""customize"": {
+                                    ""neck"": ""bell"",
+                                    ""head"": ""hat"",
+                                    ""face"": ""glasses""
+                                }
+                            }
+                        }";
+                var characterData = JsonUtility.FromJson<CharacterData>(jsonData);
+                Renderer[] eyeRenderers = gameObject.GetComponentsInChildren<Renderer>();
+                foreach (Renderer renderer in eyeRenderers)
+                {
+                    if (characterData.color.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                    {
+                        string colorString = null;
+                        switch (renderer.name)
+                        {
+                            case "eye":
+                                colorString = characterData.color.eye.ToString();
+                                break;
+                            case "ear":
+                                colorString = characterData.color.ear.ToString();
+                                break;
+                            case "body":
+                                colorString = characterData.color.body.ToString();
+                                break;
+                        }
+                        // 文字列をfloatに変換してからコンマで分割
+                        string[] values = colorString.Split(',');
+                        // 分割された値をfloat型に変換してColorに代入
+                        float r = float.Parse(values[0]);
+                        float g = float.Parse(values[1]);
+                        float b = float.Parse(values[2]);
+                        float a = float.Parse(values[3]);
+
+                        Color color = new(r, g, b, a);
+                        renderer.material.color = color;
+                    }
+
+                    if(characterData.customize.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                    {
+                        renderer.enabled = true;
+                    }
+                }
             }
             else
             {
