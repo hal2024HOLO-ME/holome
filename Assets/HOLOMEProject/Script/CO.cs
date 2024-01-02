@@ -23,6 +23,12 @@ namespace Const
         /// </summary>
         public const string ANIMATOR_TRIGGER_WALK = "WalkTrigger";
 
+
+        /// <summary>
+        /// animatorのパラメータ名：喜ぶ
+        /// </summary>
+        public const string ANIMATOR_TRIGGER_HAPPY = "HappyTrigger";
+
         /// <summary>
         /// アニメーションのbool名：死ぬ
         /// </summary>

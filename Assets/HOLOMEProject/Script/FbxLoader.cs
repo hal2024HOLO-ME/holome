@@ -49,7 +49,6 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         gameObjectName = new SendResult().GetResponseFileName();
-        GameObject generateObject = GameObject.Find("GenerateObject");
 
         // Main Cameraを検索して取得
         Camera mainCamera = Camera.main;
@@ -119,15 +118,6 @@ public class FbxLoader : MonoBehaviourPunCallbacks
         RuntimeAnimatorController controller = Resources.Load("animation/"+ gameObjectName
             +" Animator Controller") as RuntimeAnimatorController;
         animator.runtimeAnimatorController = controller;
-    }
-
-    /// <summary>
-    /// 生成したObjectに対して、RigidBodyを追加する。
-    /// </summary>
-    private void AddRigidBody(GameObject childObject)
-    {
-        Rigidbody rigidbody = childObject.AddComponent<Rigidbody>();
-        rigidbody.isKinematic = true;
     }
 
     /// <summary>

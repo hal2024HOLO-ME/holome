@@ -1,3 +1,4 @@
+using Const;
 using System.Collections;
 using UnityEngine;
 
@@ -27,26 +28,28 @@ public class BrushCollisionDetection : MonoBehaviour
     /// <param name="collision">衝突情報</param>
     public void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(HandleCollision(collision));
+        if( collision.gameObject.name == characterModel.GetGameObject().name )
+        {
+            Debug.Log("ブラシが衝突しました。");
+            StartCoroutine(HandleCollision());
+        }
     }
 
     /// <summary>
     /// 衝突時の処理をハンドリングする。
     /// </summary>
     /// <param name="collision">衝突情報</param>
-    private IEnumerator HandleCollision(Collision collision)
+    private IEnumerator HandleCollision()
     {
-        GameObject headObject = characterModel.GetGameObject().transform.Find("head").gameObject;
-
-        bool isCollisionAndBrushUsed = collision.gameObject.name == headObject.name && isBrushUsed || characterModel.GetIsDead();
-        if (isCollisionAndBrushUsed ) {
+        ;
+        if (isBrushUsed || characterModel.GetIsDead()) {
             /**
                 1. charactermodelのアニメーションを再生する。
                 2. 懐き度を上げる。
                 3. ブラシは一回使用したら５分間は使用できないようにする。isBrushUsedをfalseにする。
              */
             Animator animator = characterModel.GetGameObject().GetComponent<Animator>();
-            animator.SetTrigger("HappyTrigger");
+            animator.SetTrigger(CO.ANIMATOR_TRIGGER_HAPPY);
 
             NostalgicManager nostalgicManager = characterModel.GetGameObject().GetComponent<NostalgicManager>();
             int nostalgicStage = nostalgicManager.GetNostalgicStage();
