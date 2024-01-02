@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 5051871629113196811}
   - component: {fileID: 8152337806052997704}
   m_Layer: 0
-  m_Name: maffler
+  m_Name: muffler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1485,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4544670605872538411}
   serializedVersion: 4
-  m_Mass: 4
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
