@@ -53,7 +53,7 @@ public class SignOut : MonoBehaviour
     }
 
     /// <summary>
-    /// ResourcesにあるConfigファイルをロードする
+    /// パートナーのJSONデータをBEに送信する
     /// </summary>
     public IEnumerator PostCharacterData(string url, string jsonString)
     {
