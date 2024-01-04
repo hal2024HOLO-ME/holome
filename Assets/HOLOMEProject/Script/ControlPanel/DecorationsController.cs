@@ -20,6 +20,10 @@ public class DecorationsController : MonoBehaviour
     public String[] headlists = new string[5];
     public String[] facelists = new string[5];
 
+    public static string neckTargetName;
+    public static string headTargetName;
+    public static string faceTargetName;
+
     /// <summary>
     /// モデルがゴーストとノーマルで首飾りの種類が違うので判定
     /// </summary>
@@ -47,6 +51,7 @@ public class DecorationsController : MonoBehaviour
             if(necklists[i] == "bell")
             {
                 neckObject.SetActive(true);
+                neckTargetName = necklists[i];
             }
             else
             {
@@ -61,6 +66,7 @@ public class DecorationsController : MonoBehaviour
             if(necklists[i] == "ribon")
             {
                 neckObject.SetActive(true);
+                neckTargetName = necklists[i];
             }
             else
             {
@@ -75,6 +81,7 @@ public class DecorationsController : MonoBehaviour
             if(necklists[i] == "muffler" || necklists[i] == "scarf")
             {
                 neckObject.SetActive(true);
+                neckTargetName = necklists[i];
             }
             else
             {
@@ -89,6 +96,7 @@ public class DecorationsController : MonoBehaviour
             if(necklists[i] == "apron")
             {
                 neckObject.SetActive(true);
+                neckTargetName = necklists[i];
             }
             else
             {
@@ -103,6 +111,7 @@ public class DecorationsController : MonoBehaviour
             if(necklists[i] == "cape")
             {
                 neckObject.SetActive(true);
+                neckTargetName = necklists[i];
             }
             else
             {
@@ -120,6 +129,7 @@ public class DecorationsController : MonoBehaviour
             if(headlists[i] == "hat")
             {
                 headObject.SetActive(true);
+                headTargetName = headlists[i];
             }
             else
             {
@@ -134,6 +144,7 @@ public class DecorationsController : MonoBehaviour
             if(headlists[i] == "tiara")
             {
                 headObject.SetActive(true);
+                headTargetName = headlists[i];
             }
             else
             {
@@ -148,6 +159,7 @@ public class DecorationsController : MonoBehaviour
             if(headlists[i] == "devilHone")
             {
                 headObject.SetActive(true);
+                headTargetName = headlists[i];
             }
             else
             {
@@ -162,6 +174,7 @@ public class DecorationsController : MonoBehaviour
             if(headlists[i] == "cap")
             {
                 headObject.SetActive(true);
+                headTargetName = headlists[i];
             }
             else
             {
@@ -176,6 +189,7 @@ public class DecorationsController : MonoBehaviour
             if(headlists[i] == "triangleHood")
             {
                 headObject.SetActive(true);
+                headTargetName = headlists[i];
             }
             else
             {
@@ -193,6 +207,7 @@ public class DecorationsController : MonoBehaviour
             if(facelists[i] == "beard")
             {
                 faceObject.SetActive(true);
+                faceTargetName = facelists[i];
             }
             else
             {
@@ -208,6 +223,7 @@ public class DecorationsController : MonoBehaviour
             if(facelists[i] == "glasses")
             {
                 faceObject.SetActive(true);
+                faceTargetName = facelists[i];
             }
             else
             {
@@ -223,6 +239,7 @@ public class DecorationsController : MonoBehaviour
             if(facelists[i] == "amulet")
             {
                 faceObject.SetActive(true);
+                faceTargetName = facelists[i];
             }
             else
             {
@@ -239,6 +256,7 @@ public class DecorationsController : MonoBehaviour
             if(facelists[i] == "sanGlasses")
             {
                 faceObject.SetActive(true);
+                faceTargetName = facelists[i];
             }
             else
             {
@@ -254,6 +272,7 @@ public class DecorationsController : MonoBehaviour
             if(facelists[i] == "eyepatch")
             {
                 faceObject.SetActive(true);
+                faceTargetName = facelists[i];
             }
             else
             {
