@@ -29,7 +29,7 @@ public class SignOut : MonoBehaviour
 
             characterModel = gameObject.GetComponent<CharacterModel>();
 
-            this.nostalgicLevel = characterModel.GetNostalgicLevel();
+            this.nostalgicLevel = 0;
             this.neckObjectName = null;
             this.headObjectName = null;
             this.faceObjectName = null;
