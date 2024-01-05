@@ -7,7 +7,7 @@ public class SendResult : MonoBehaviour
 {
     private int answerCount;
     private string responseCharacterName;
-    
+
     // HACK: ここのstatic変数なんとかしたいけど非同期処理の関係でうまく直せない
     private static string responseFileName;
     public GameObject slate;
@@ -54,6 +54,7 @@ public class SendResult : MonoBehaviour
     /// </summary>
     public void SendResultToServer()
     {
+        Debug.Log("session:" + Login.session);
         StartCoroutine(SendResultCoroutine());
     }
 
@@ -66,11 +67,13 @@ public class SendResult : MonoBehaviour
         answerCount = PersonalityDiagnosisRadio.answerCount;
         string characterName = GetCharacterName(answerCount);
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("character_type", SelectCharacterType.characterType);
         form.AddField("character_name", characterName);
+        Debug.Log(Login.session);
+        form.AddField("user_id", Login.session);
 
-        WWW www = new WWW(config.BASE_URL + "/diagnosis", form);
+        WWW www = new(config.BASE_URL + "/diagnosis", form);
         yield return www;
 
         if (www.error == null)
@@ -97,7 +100,7 @@ public class SendResult : MonoBehaviour
 
         ResultTitle.text = "あなたは「 " + responseCharacterName + "タイプ」です！";
         ResultContents.text = response.description;
-        ResultBelowText.text = "そんなあなたのパートナーは" + responseCharacterName  + "です";
+        ResultBelowText.text = "そんなあなたのパートナーは" + responseCharacterName + "です";
 
         Sprite newSprite = Resources.Load<Sprite>("Images/" + responseFileName);
         characterImageRenderer.sprite = newSprite;

@@ -30,4 +30,9 @@ public class ChangeTarget : MonoBehaviour
     public string[] GetTarget(){
         return target;
     }
+
+    public string GetTarget1()
+    {
+        return target[0];
+    }
 }
