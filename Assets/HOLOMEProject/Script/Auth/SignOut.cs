@@ -10,7 +10,6 @@ public class SignOut : MonoBehaviour
     private CharacterModel characterModel;
 
     /// JSONçÏê¨ópïœêî
-    private int nostalgicLevel;
     private Color eyeColor;
     private Color earColor;
     private Color bodyColor;
@@ -26,10 +25,6 @@ public class SignOut : MonoBehaviour
         if (config == null)
         {
             LoadConfig();
-
-            characterModel = gameObject.GetComponent<CharacterModel>();
-
-            this.nostalgicLevel = 0;
             this.neckObjectName = null;
             this.headObjectName = null;
             this.faceObjectName = null;
@@ -84,8 +79,6 @@ public class SignOut : MonoBehaviour
     /// </summary>
     public void HandleSignOut()
     {
-        characterModel = gameObject.GetComponent<CharacterModel>();
-
         this.neckObjectName = DecorationsController.neckTargetName;
         this.headObjectName = DecorationsController.headTargetName;
         this.faceObjectName = DecorationsController.faceTargetName;
@@ -99,7 +92,7 @@ public class SignOut : MonoBehaviour
 
         WWWForm form = new();
         CharacterData characterData = new CharacterData();
-        characterData.nostalgic_level = this.nostalgicLevel;
+        characterData.nostalgic_level = characterModel.GetNostalgicLevel();
         characterData.color = new PartnerColor { eye = this.eyeColor, ear = this.earColor, body = this.bodyColor };
         characterData.customize = new Customize { neck = this.neckObjectName, head = this.headObjectName, face = this.faceObjectName };
 
@@ -110,5 +103,10 @@ public class SignOut : MonoBehaviour
         StartCoroutine(PostCharacterData(config.BASE_URL + "/auth/signout", jsonString));
         Login.session = null;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoginScene");
+    }
+
+    public void SetCharacterModel(CharacterModel characterModel)
+    {
+        this.characterModel = characterModel;
     }
 }
