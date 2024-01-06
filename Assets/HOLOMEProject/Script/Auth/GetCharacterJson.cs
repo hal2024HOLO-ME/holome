@@ -7,7 +7,12 @@ using UnityEngine.Networking;
 public class GetCharacterJson : MonoBehaviour
 {
     private static Config config;
-    private string responseString;
+    private static string responseString;
+
+    public string GetResponseString()
+    {
+        return responseString;
+    }
 
     /// <summary>
     ///  起動時にLoadConfig()でconfigファイルを読み込む

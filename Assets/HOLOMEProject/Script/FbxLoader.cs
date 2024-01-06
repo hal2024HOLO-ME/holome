@@ -3,6 +3,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UniRx;
+using System.Linq;
+using System.Collections.Generic;
 
 /// <summary>
 /// オブジェクトの生成を行う。
@@ -94,6 +96,42 @@ public class FbxLoader : MonoBehaviourPunCallbacks
 
                 SignOut signOut = SignOutButton.GetComponent<SignOut>();
                 signOut.SetCharacterModel(characterModel);
+
+                var sessionObject = JsonUtility.FromJson<LoginResponse>(new Login().GetResponseSession());
+                Debug.Log(sessionObject);
+
+                if (!sessionObject.isCharacterExists) return;
+
+                string CHARACTER_JSON_DATA = new GetCharacterJson().GetResponseString();
+
+
+                var characterData = JsonUtility.FromJson<CharacterData>(CHARACTER_JSON_DATA);
+
+                // 懐き度のセット
+                characterModel.SetNostalgicLevel(characterData.nostalgic_level);
+
+                Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+
+                Dictionary<string, Color> colorDictionary = new()
+                {
+                    {"eye", characterData.color.eye},
+                    {"ear", characterData.color.ear},
+                    {"body", characterData.color.body},
+                };
+
+                foreach (Renderer renderer in renderers)
+                {
+                    if (characterData.customize.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                    {
+                        renderer.enabled = true;
+                    }
+
+                    if (characterData.color.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                    {
+                        renderer.material.color = colorDictionary[renderer.name];
+                    }
+                }
+
             }
             else
             {
