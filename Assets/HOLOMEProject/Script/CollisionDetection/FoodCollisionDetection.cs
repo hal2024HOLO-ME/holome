@@ -78,7 +78,7 @@ public class FoodCollisionDetection : MonoBehaviour
             nostalgicManager.IncreaseNostalgicLevel();
             nostalgicManager.ChangeObjectSize();
             // 30秒待機
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(30f);
 
             // Characterを元の位置に戻す
             characterObject.transform.LookAt(characterPositionSave);
