@@ -11,21 +11,11 @@ using Const;
 public class HealthMonitor : MonoBehaviour
 {
     private CharacterModel characterModel;
-    public readonly DateTime dateTime;
+    public DateTime dateTime = new DateTime();
     /// <summary>
     /// 時刻判定(分刻み)のトリガー
     /// </summary>
     IDisposable minuteTimeTrigger;
-
-    public HealthMonitor()
-    {
-        dateTime = DateTime.Now;
-    }
-
-    public HealthMonitor(DateTime dateTime)
-    {
-        this.dateTime = dateTime;
-    }
 
     void Awake()
     {
@@ -75,8 +65,9 @@ public class HealthMonitor : MonoBehaviour
     /// <returns>睡眠時刻の範囲ならtrueを返す</returns>
     public bool CheckSleepTime()
     {
-        // 現在の時刻を取得
-        TimeSpan timeOfDay = dateTime.TimeOfDay;
+        // 現在の時刻を取得する
+        TimeSpan timeOfDay = DateTime.Now.TimeOfDay;
+        Debug.Log(timeOfDay);
 
         // 00:00 ～ 07:00 の範囲をチェックする
         TimeSpan startTime = new(0, 0, 0);
