@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -14,8 +13,8 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public GameObject Food;
     public GameObject Brush;
     public ParticleSystem Shower;
+    public GameObject SignOutButton;
     private GameObject quadGif;
-    private GameObject parentPartnerTable;
     public GameObject partnerTable;
 
     private void Start()
@@ -92,6 +91,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                 AnimationTimer animationTimer = gameObject.AddComponent<AnimationTimer>();
                 animationTimer.SetCharacterModel(characterModel);
                 gameObject.AddComponent<NostalgicManager>();
+
+                SignOut signOut = SignOutButton.GetComponent<SignOut>();
+                signOut.SetCharacterModel(characterModel);
             }
             else
             {

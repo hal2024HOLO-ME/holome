@@ -98,10 +98,10 @@ public class Register : MonoBehaviour
     }
 
     /// <summary>
-    /// すでに登録済みのメールアドレスは使用不可
+    /// すでに登録済みのユーザーIDは使用不可
     /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="password"></param>
+    /// <param name="userId">ログイン用ユーザーID</param>
+    /// <param name="password">パスワード</param>
     /// <returns></returns>
 
     private IEnumerator SendRegisterRequest(string userId, string password)
