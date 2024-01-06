@@ -55,6 +55,8 @@ public class FoodCollisionDetection : MonoBehaviour
             GameObject characterObject = characterModel.GetGameObject();
             Animator characterAnimator = characterObject.GetComponent<Animator>();
             Vector3 characterPositionSave = characterObject.transform.position;
+            // rotationを保存する。
+            Quaternion characterRotationSave = characterObject.transform.rotation;
 
             Vector3 foodPosition = foodObject.transform.position;
 
@@ -81,7 +83,7 @@ public class FoodCollisionDetection : MonoBehaviour
             // Characterを元の位置に戻す
             characterObject.transform.LookAt(characterPositionSave);
 
-            yield return StartCoroutine(MoveToDestination(characterObject, characterPositionSave).ToYieldInstruction());
+            yield return StartCoroutine(MoveToTarget(characterPositionSave, characterRotationSave));
         }
         animationTimer.SetIsTimePassed(false);
         animationTimer.TimerSet();
@@ -151,5 +153,24 @@ public class FoodCollisionDetection : MonoBehaviour
 
         // アニメーションの終了を待つ
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    IEnumerator MoveToTarget(Vector3 characterPositionSave , Quaternion characterRotationSave)
+    {
+        float moveSpeed = 3f;
+        GameObject characterObject = characterModel.GetGameObject();
+        while (characterObject.transform.position != characterPositionSave)
+        {
+            // 現在の位置から目標位置まで Lerp を使用して滑らかに移動
+            characterObject.transform.position = Vector3.Lerp(characterObject.transform.position, characterPositionSave, Time.deltaTime * moveSpeed);
+
+            // 1フレーム待機
+            yield return null;
+        }
+
+        characterObject.transform.rotation = characterRotationSave;
+
+        // 移動が完了したことを確認するためにログを出力
+        Debug.Log("Object has reached the target position!");
     }
 }
