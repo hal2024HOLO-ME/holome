@@ -62,7 +62,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
             // Main Cameraの座標を取得
             Vector3 cameraPosition = mainCamera.transform.position;
             // Main Cameraの方向に0.5だけ進んだ位置を計算
-            Vector3 spawnPosition = cameraPosition + cameraForward * 0.5f;
+            Vector3 spawnPosition = cameraPosition + cameraForward * 0.8f;
             Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
 
             Debug.Log(gameObjectName + "を生成します。");
