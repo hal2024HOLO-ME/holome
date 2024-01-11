@@ -17,8 +17,8 @@ public class AnimatedTextures : MonoBehaviour
     {
         /// TODO: ƒGƒ‰[o‚é‚Ì‚Åˆê’U‚½‚Ê‚«Ghost‚ÅŒÅ’è
 
-        // this.Filename = new SendResult().GetResponseFileName() + ".gif";
-        this.Filename = "MiiVerGhost.gif";
+        this.Filename = new SendResult().GetResponseFileName() + ".gif";
+        // this.Filename = "MiiVerGhost.gif";
 
 
         if (string.IsNullOrWhiteSpace(Filename))
