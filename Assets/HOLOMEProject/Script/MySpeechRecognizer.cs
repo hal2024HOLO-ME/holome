@@ -25,7 +25,7 @@ public class MySpeechRecognizer : MonoBehaviour
         if (textAsset != null)
         {
             // ファイルの内容を取得
-            subscriptionKey = textAsset.name;
+            subscriptionKey = textAsset.text;
         }
         else
         {
@@ -115,7 +115,6 @@ public class MySpeechRecognizer : MonoBehaviour
             {
                 recognizedString = $"{e.Result.Text}";
                 Debug.Log(recognizedString);
-                textMeshPro.text = recognizedString;
             }
         }
     }
@@ -134,6 +133,7 @@ public class MySpeechRecognizer : MonoBehaviour
             {
                 recognizedString = $"{e.Result.Text}";
                 Debug.Log(recognizedString);
+                textMeshPro.text = recognizedString;
             }
         }
         else if (e.Result.Reason == ResultReason.NoMatch)
