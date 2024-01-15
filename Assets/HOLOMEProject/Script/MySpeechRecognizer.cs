@@ -1,20 +1,21 @@
 using Microsoft.CognitiveServices.Speech;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MySpeechRecognizer : MonoBehaviour
 {
     private string recognizedString = "";
-    private object threadLocker = new object();
+    private readonly object threadLocker = new();
     private SpeechRecognizer recognizer;
     private const string fromLanguage = "ja-JP";
-    private string subscriptionKey;
     private const string region = "japaneast";
+    private string subscriptionKey;
 
-    public string WakeWord = "";
-    public string ActionWord = "";
+    public string[] actionString = { "‘O", "Œã‚ë" };
     public bool action = false;
+    public TextMeshPro textMeshPro;
 
     private void Awake()
     {
@@ -40,10 +41,7 @@ public class MySpeechRecognizer : MonoBehaviour
 
     void OnDestroy()
     {
-        if (recognizer != null)
-        {
-            recognizer.Dispose();
-        }
+        recognizer?.Dispose();
     }
 
     public async void BeginRecognizing()
@@ -117,6 +115,7 @@ public class MySpeechRecognizer : MonoBehaviour
             {
                 recognizedString = $"{e.Result.Text}";
                 Debug.Log(recognizedString);
+                textMeshPro.text = recognizedString;
             }
         }
     }
