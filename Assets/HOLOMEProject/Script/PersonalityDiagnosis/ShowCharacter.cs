@@ -16,6 +16,7 @@ public class ShowCharacter : MonoBehaviour
     /// </summary>    
     public void Start()
     {
+        Debug.Log(SendCharacterName.partnerName);
         // HACK： Static変数をGetterで拾っている
         // 初期化処理
         gameObjectName = new SendResult().GetResponseFileName();
