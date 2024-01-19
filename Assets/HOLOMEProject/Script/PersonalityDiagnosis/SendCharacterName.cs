@@ -8,6 +8,7 @@ public class SendCharacterName : MonoBehaviour
 {
     public MRTKUGUIInputField characterNameInputField;
     private static Config config;
+    public static string partnerName;
 
     /// <summary>
     ///  起動時にLoadConfig()でconfigファイルを読み込む
@@ -42,6 +43,7 @@ public class SendCharacterName : MonoBehaviour
     public void HandleCharacterNameRegister()
     {
         string characterName = characterNameInputField.text;
+        partnerName = characterName;
 
         StartCoroutine(SendCharacterNameRequest(characterName, Login.session, PersonalityDiagnosisRadio.answerCount));
     }
