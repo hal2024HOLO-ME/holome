@@ -135,25 +135,26 @@ public class MySpeechRecognizer : MonoBehaviour
                     // 移動先の座標を計算
                     Vector3 targetPosition = cameraTransform.position + cameraForward * distanceFromCamera;
 
-                    // GameObject characterObject = characterModel.GetGameObject();
-                    while (characterObject.transform.position != targetPosition)
+                    if( SendCharacterName.partnerName.Contains(recognizedString) )
                     {
-                        // 現在の位置から目標位置まで Lerp を使用して滑らかに移動
-                        characterObject.transform.position = Vector3.Lerp(characterObject.transform.position, targetPosition, Time.deltaTime * moveSpeed);
+                        GameObject characterObject = characterModel.GetGameObject();
+                        while (characterObject.transform.position != targetPosition)
+                        {
+                            // 現在の位置から目標位置まで Lerp を使用して滑らかに移動
+                            characterObject.transform.position = Vector3.Lerp(characterObject.transform.position, targetPosition, Time.deltaTime * moveSpeed);
+                        }
+                        characterObject.transform.LookAt(cameraTransform);
+                        // オブジェクトをカメラの正面方向に移動させる
+                        transform.position = Vector3.Lerp(characterObject.transform.position, targetPosition, Time.deltaTime * moveSpeed);
                     }
-                    gameObject.transform.LookAt(cameraTransform);
-                    Debug.Log(targetPosition);
-                    Debug.Log(characterObject.transform.position);
-                    // オブジェクトをカメラの正面方向に移動させる
-                    transform.position = Vector3.Lerp(characterModel.GetGameObject().transform.position, targetPosition, Time.deltaTime * moveSpeed);
                     action = true;
                 }, null);
-                /*}*/
             }
         }
     }
 
     /// <summary>
+    /// 
     /// 音声が正常に認識されたときに呼び出されるイベントハンドラです。
     /// 認識された文字列を recognizedString に設定し、デバッグログに表示しています。
     /// </summary>
