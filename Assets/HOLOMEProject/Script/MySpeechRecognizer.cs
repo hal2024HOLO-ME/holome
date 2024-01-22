@@ -16,6 +16,7 @@ public class MySpeechRecognizer : MonoBehaviour
     private SynchronizationContext context;
     public bool action = false;
     private CharacterModel characterModel;
+    public GameObject characterObject;
 
     private void Awake()
     {
@@ -121,7 +122,7 @@ public class MySpeechRecognizer : MonoBehaviour
                 /*                if (recognizedString.Contains(SendCharacterName.partnerName))
                                 {*/
                 // mianスレッドで実行
-                context.Post(_ =>
+                context.Post(async _ =>
                 {
                     float distanceFromCamera = 2f;
                     float moveSpeed = 5f;
@@ -134,7 +135,7 @@ public class MySpeechRecognizer : MonoBehaviour
                     // 移動先の座標を計算
                     Vector3 targetPosition = cameraTransform.position + cameraForward * distanceFromCamera;
 
-                    GameObject characterObject = characterModel.GetGameObject();
+                    // GameObject characterObject = characterModel.GetGameObject();
                     while (characterObject.transform.position != targetPosition)
                     {
                         // 現在の位置から目標位置まで Lerp を使用して滑らかに移動
@@ -142,7 +143,7 @@ public class MySpeechRecognizer : MonoBehaviour
                     }
                     gameObject.transform.LookAt(cameraTransform);
                     Debug.Log(targetPosition);
-                    Debug.Log(characterModel.GetGameObject().transform.position);
+                    Debug.Log(characterObject.transform.position);
                     // オブジェクトをカメラの正面方向に移動させる
                     transform.position = Vector3.Lerp(characterModel.GetGameObject().transform.position, targetPosition, Time.deltaTime * moveSpeed);
                     action = true;
