@@ -97,6 +97,9 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                 SignOut signOut = SignOutButton.GetComponent<SignOut>();
                 signOut.SetCharacterModel(characterModel);
 
+                MySpeechRecognizer mySpeechRecognizer = gameObject.AddComponent<MySpeechRecognizer>();
+                mySpeechRecognizer.SetCharacterModel(characterModel);
+
                 var sessionObject = JsonUtility.FromJson<LoginResponse>(new Login().GetResponseSession());
                 Debug.Log(sessionObject);
 
