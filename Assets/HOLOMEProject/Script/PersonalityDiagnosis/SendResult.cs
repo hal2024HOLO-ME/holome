@@ -70,6 +70,7 @@ public class SendResult : MonoBehaviour
         form.AddField("character_type", SelectCharacterType.characterType);
         form.AddField("character_name", characterName);
 
+        // NOTE: ログインなしの場合このAPI叩く
         WWW www = new(config.BASE_URL + "/diagnosis/select-character", form);
         yield return www;
 
