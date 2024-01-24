@@ -9,7 +9,7 @@ public class DecorationsController : MonoBehaviour
     /// <summary>
     /// キャラクターカスタマイズ
     /// </summary>
-    public string  characterParentObject2 = SendResult.responseFileName;
+    public string  characterParentObject2 = new SendResult().GetResponseFileName();
     public GameObject parentObject;
     public GameObject neckObject;
     public GameObject headObject;
@@ -28,7 +28,7 @@ public class DecorationsController : MonoBehaviour
     /// モデルがゴーストとノーマルで首飾りの種類が違うので判定
     /// </summary>
     void Start(){
-        Debug.Log("SendResult.responseFileName:" + SendResult.responseFileName);
+        Debug.Log(" new SendResult().GetResponseFileName():" + new SendResult().GetResponseFileName());
         Debug.Log(" characterParentObject2Start" +  characterParentObject2);
         if( characterParentObject2.Contains(GhostStr) && ! characterParentObject2.Contains(Mii)){
             necklists = new[]{"bell","ribon","scarf","apron","cape"};
