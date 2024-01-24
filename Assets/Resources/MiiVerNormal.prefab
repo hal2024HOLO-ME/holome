@@ -427,7 +427,7 @@ MonoBehaviour:
   <OnDisabled>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 5368136785125613898}
   allowedManipulations: 7
   allowedInteractionTypes: -2147483641
   applyTorque: 1
