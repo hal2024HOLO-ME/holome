@@ -9,7 +9,7 @@ public class SendResult : MonoBehaviour
     private string responseCharacterName;
 
     // HACK: ここのstatic変数なんとかしたいけど非同期処理の関係でうまく直せない
-    private static string responseFileName;
+    public static string responseFileName;
     public GameObject slate;
     public GameObject personalityDiagnosisResultSlate;
     public TextMeshPro ResultTitle;
