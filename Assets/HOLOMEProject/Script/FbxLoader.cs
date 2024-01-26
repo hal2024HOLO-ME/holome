@@ -19,132 +19,115 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     private GameObject quadGif;
     public GameObject partnerTable;
 
-    private void Start()
+    private void Awake()
     {
-        // プレイヤー自身の名前を"Player"に設定する
-        PhotonNetwork.NickName = "Player";
-
-        // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
-        PhotonNetwork.ConnectUsingSettings();
-
         GameObject parentPartnerTable = GameObject.Find("ParentPartnerTable");
         partnerTable = parentPartnerTable.transform.Find("ChildPartnerTable").gameObject;
-    }
 
-    /// <summary>
-    ///vマスターサーバーへの接続が成功した時に呼ばれるコールバック 
-    /// </summary>
-    public override void OnConnectedToMaster()
-    {
         quadGif = GameObject.Find("Quad");
 
-        // "Room"という名前のルームに参加する（ルームが存在しなければ作成して参加する）
+
         Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => {
             quadGif.SetActive(false);
-            PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-        });
-        Debug.Log("サーバーに接続しました。。");
-    }
 
-    // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
-    public override void OnJoinedRoom()
-    {
-        gameObjectName = new SendResult().GetResponseFileName();
+            gameObjectName = new SendResult().GetResponseFileName();
 
-        // Main Cameraを検索して取得
-        Camera mainCamera = Camera.main;
+            // Main Cameraを検索して取得
+            Camera mainCamera = Camera.main;
 
-
-        if (mainCamera != null)
-        {
-            // Main Cameraが向いている方向を取得
-            Vector3 cameraForward = mainCamera.transform.forward;
-            // Main Cameraの座標を取得
-            Vector3 cameraPosition = mainCamera.transform.position;
-            // Main Cameraの方向に0.5だけ進んだ位置を計算
-            Vector3 spawnPosition = cameraPosition + cameraForward * 0.8f;
-            Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
-
-            Debug.Log(gameObjectName + "を生成します。");
-            GameObject gameObject = PhotonNetwork.Instantiate(gameObjectName, spawnPosition, rotation);
-            
-            partnerTable.transform.position = spawnPosition;
-            partnerTable.SetActive(true);
-
-            if (gameObject != null)
+            if (mainCamera != null)
             {
-                gameObject.name = gameObjectName;
+                // Main Cameraが向いている方向を取得
+                Vector3 cameraForward = mainCamera.transform.forward;
+                // Main Cameraの座標を取得
+                Vector3 cameraPosition = mainCamera.transform.position;
+                // Main Cameraの方向に0.5だけ進んだ位置を計算
+                Vector3 spawnPosition = cameraPosition + cameraForward * 0.8f;
+                Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
 
-                AddAnimatorController(gameObject);
+                Debug.Log(gameObjectName + "を生成します。");
+                Debug.Log(gameObjectName.Equals("KitsuneVerGhost"));
+                //GameObject gameObject = PhotonNetwork.Instantiate("KitsuneVerGhost", spawnPosition, rotation);
+                // Resousesの配下のpfehabを取得して表示をさせる。
+                GameObject fbxObject = Resources.Load<GameObject>(gameObjectName);
 
-                CharacterModel characterModel = AddCharacterModel(gameObject);
-                SetInitSize(characterModel.GetGameObject());
+                partnerTable.transform.position = spawnPosition;
+                partnerTable.SetActive(true);
 
-                FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
-                foodCollisionDetection.SetCharacterModel(characterModel);
+                Debug.Log(gameObject);
+                if (gameObject != null)
+                {
+                    // FBXをHierarchyに追加する
+                    GameObject generatedObject = Instantiate(fbxObject);
+                    generatedObject.name = gameObjectName;
+                    generatedObject.transform.rotation = rotation;
+                    generatedObject.transform.position = spawnPosition;
 
-                BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
-                brushCollisionDetection.SetCharacterModel(characterModel);
+                    AddAnimatorController(generatedObject);
 
-                ShowerCollisionDetection showerCollisionDetection = Shower.GetComponent<ShowerCollisionDetection>();
-                showerCollisionDetection.SetCharacterModel(characterModel);
+                    CharacterModel characterModel = AddCharacterModel(generatedObject);
+                    SetInitSize(characterModel.GetGameObject());
 
-                gameObject.AddComponent<HealthMonitor>();
-                AnimationTimer animationTimer = gameObject.AddComponent<AnimationTimer>();
-                animationTimer.SetCharacterModel(characterModel);
-                gameObject.AddComponent<NostalgicManager>();
+                    FoodCollisionDetection foodCollisionDetection = Food.GetComponent<FoodCollisionDetection>();
+                    foodCollisionDetection.SetCharacterModel(characterModel);
 
-                SignOut signOut = SignOutButton.GetComponent<SignOut>();
-                signOut.SetCharacterModel(characterModel);
+                    BrushCollisionDetection brushCollisionDetection = Brush.GetComponent<BrushCollisionDetection>();
+                    brushCollisionDetection.SetCharacterModel(characterModel);
 
-                MySpeechRecognizer mySpeechRecognizer = gameObject.AddComponent<MySpeechRecognizer>();
-                mySpeechRecognizer.SetCharacterModel(characterModel);
+                    ShowerCollisionDetection showerCollisionDetection = Shower.GetComponent<ShowerCollisionDetection>();
+                    showerCollisionDetection.SetCharacterModel(characterModel);
 
-                var sessionObject = JsonUtility.FromJson<LoginResponse>(new Login().GetResponseSession());
-                Debug.Log(sessionObject);
+                    generatedObject.AddComponent<HealthMonitor>();
+                    AnimationTimer animationTimer = generatedObject.AddComponent<AnimationTimer>();
+                    animationTimer.SetCharacterModel(characterModel);
+                    generatedObject.AddComponent<NostalgicManager>();
 
-                if (!sessionObject.isCharacterExists) return;
+                    SignOut signOut = SignOutButton.GetComponent<SignOut>();
+                    signOut.SetCharacterModel(characterModel);
 
-                string CHARACTER_JSON_DATA = new GetCharacterJson().GetResponseString();
+                    MySpeechRecognizer mySpeechRecognizer = generatedObject.AddComponent<MySpeechRecognizer>();
+                    mySpeechRecognizer.SetCharacterModel(characterModel);
+
+                    var sessionObject = JsonUtility.FromJson<LoginResponse>(new Login().GetResponseSession());
+                    Debug.Log(sessionObject);
+
+                    if (!sessionObject.isCharacterExists) return;
+
+                    string CHARACTER_JSON_DATA = new GetCharacterJson().GetResponseString();
 
 
-                var characterData = JsonUtility.FromJson<CharacterData>(CHARACTER_JSON_DATA);
+                    var characterData = JsonUtility.FromJson<CharacterData>(CHARACTER_JSON_DATA);
 
-                // 懐き度のセット
-                characterModel.SetNostalgicLevel(characterData.nostalgic_level);
+                    // 懐き度のセット
+                    characterModel.SetNostalgicLevel(characterData.nostalgic_level);
 
-                Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+                    Renderer[] renderers = generatedObject.GetComponentsInChildren<Renderer>();
 
-                Dictionary<string, Color> colorDictionary = new()
+                    Dictionary<string, Color> colorDictionary = new()
                 {
                     {"eye", characterData.color.eye},
                     {"ear", characterData.color.ear},
                     {"body", characterData.color.body},
                 };
 
-                foreach (Renderer renderer in renderers)
-                {
-                    if (characterData.customize.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                    foreach (Renderer renderer in renderers)
                     {
-                        renderer.enabled = true;
+                        if (characterData.customize.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                        {
+                            renderer.enabled = true;
+                        }
+
+                        if (characterData.color.GetType().GetProperties().Any(p => p.Name == renderer.name))
+                        {
+                            renderer.material.color = colorDictionary[renderer.name];
+                        }
                     }
 
-                    if (characterData.color.GetType().GetProperties().Any(p => p.Name == renderer.name))
-                    {
-                        renderer.material.color = colorDictionary[renderer.name];
-                    }
                 }
+            }
+        });
 
-            }
-            else
-            {
-                Debug.LogError("FBXファイルが見つかりません: " + gameObjectName);
-            }
-        }
-        else
-        {
-            Debug.LogError("メインカメラがありません");
-        }
+        
     }
 
     public void SetGameObjectName(string value)
