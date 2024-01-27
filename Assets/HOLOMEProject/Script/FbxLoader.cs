@@ -18,6 +18,7 @@ public class FbxLoader : MonoBehaviourPunCallbacks
     public GameObject SignOutButton;
     private GameObject quadGif;
     public GameObject partnerTable;
+    public GameObject floor;
 
     private void Awake()
     {
@@ -81,6 +82,10 @@ public class FbxLoader : MonoBehaviourPunCallbacks
                     AnimationTimer animationTimer = generatedObject.AddComponent<AnimationTimer>();
                     animationTimer.SetCharacterModel(characterModel);
                     generatedObject.AddComponent<NostalgicManager>();
+
+                    FloorHidden floorHidden = generatedObject.AddComponent<FloorHidden>();
+                    floorHidden.caracter = generatedObject;
+                    floorHidden.objectB = floor;
 
                     SignOut signOut = SignOutButton.GetComponent<SignOut>();
                     signOut.SetCharacterModel(characterModel);
