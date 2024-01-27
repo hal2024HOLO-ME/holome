@@ -9,10 +9,26 @@ public class DecorationsController : MonoBehaviour
     /// <summary>
     /// キャラクターカスタマイズ
     /// </summary>
-    public string  characterParentObject2 = new SendResult().GetResponseFileName();
+    public string  characterParentObject3 = new SendResult().GetResponseFileName();
     public GameObject parentObject;
     public GameObject neckObject;
     public GameObject headObject;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public GameObject faceObject;
     private string GhostStr = "Ghost";
     private string  Mii = "Mii";
@@ -29,8 +45,8 @@ public class DecorationsController : MonoBehaviour
     /// </summary>
     void Start(){
         Debug.Log(" new SendResult().GetResponseFileName():" + new SendResult().GetResponseFileName());
-        Debug.Log(" characterParentObject2Start" +  characterParentObject2);
-        if( characterParentObject2.Contains(GhostStr) && ! characterParentObject2.Contains(Mii)){
+        Debug.Log(" characterParentObject3Start" +  characterParentObject3);
+        if( characterParentObject3.Contains(GhostStr) && ! characterParentObject3.Contains(Mii)){
             necklists = new[]{"bell","ribon","scarf","apron","cape"};
             headlists = new[]{"hat","tiara","devilHone","cap","triangleHood"};
             facelists = new[]{"beard","glasses","amulet","sanGlasses","eyepatch"};
@@ -44,8 +60,8 @@ public class DecorationsController : MonoBehaviour
     /// 首飾り
     /// </summary>
     public void Bell(){
-        parentObject = GameObject.Find( characterParentObject2);
-        Debug.Log(" characterParentObject2" +  characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
+        Debug.Log(" characterParentObject3" +  characterParentObject3);
         for (int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
             if(necklists[i] == "bell")
@@ -60,7 +76,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Ribon(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
             if(necklists[i] == "ribon")
@@ -75,7 +91,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Muffler(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
             if(necklists[i] == "muffler" || necklists[i] == "scarf")
@@ -90,7 +106,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Apron(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
             if(necklists[i] == "apron")
@@ -105,7 +121,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Cape(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < necklists.Length; i++){
             neckObject = parentObject.transform.Find(necklists[i]).gameObject;
             if(necklists[i] == "cape")
@@ -123,7 +139,7 @@ public class DecorationsController : MonoBehaviour
     /// 頭飾り
     /// </summary>
     public void Hat(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < headlists.Length; i++){
             headObject = parentObject.transform.Find(headlists[i]).gameObject;
             if(headlists[i] == "hat")
@@ -138,7 +154,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Tiara(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < headlists.Length; i++){
             headObject = parentObject.transform.Find(headlists[i]).gameObject;
             if(headlists[i] == "tiara")
@@ -153,7 +169,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void DevilHone(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < headlists.Length; i++){
             headObject = parentObject.transform.Find(headlists[i]).gameObject;
             if(headlists[i] == "devilHone")
@@ -168,7 +184,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void Cap(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < headlists.Length; i++){
             headObject = parentObject.transform.Find(headlists[i]).gameObject;
             if(headlists[i] == "cap")
@@ -183,7 +199,7 @@ public class DecorationsController : MonoBehaviour
         }
     }
     public void TrianglarHood(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < headlists.Length; i++){
             headObject = parentObject.transform.Find(headlists[i]).gameObject;
             if(headlists[i] == "triangleHood")
@@ -201,7 +217,7 @@ public class DecorationsController : MonoBehaviour
     /// 顔飾り
     /// </summary>
     public void Beard(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < facelists.Length; i++){
             faceObject = parentObject.transform.Find(facelists[i]).gameObject;
             if(facelists[i] == "beard")
@@ -217,7 +233,7 @@ public class DecorationsController : MonoBehaviour
     }
 
     public void Glasses(){
-         parentObject = GameObject.Find( characterParentObject2);
+         parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < facelists.Length; i++){
             faceObject = parentObject.transform.Find(facelists[i]).gameObject;
             if(facelists[i] == "glasses")
@@ -233,7 +249,7 @@ public class DecorationsController : MonoBehaviour
     }
 
     public void Amulet(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < facelists.Length; i++){
             faceObject = parentObject.transform.Find(facelists[i]).gameObject;
             if(facelists[i] == "amulet")
@@ -250,7 +266,7 @@ public class DecorationsController : MonoBehaviour
 
 
     public void SanGlasses(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < facelists.Length; i++){
             faceObject = parentObject.transform.Find(facelists[i]).gameObject;
             if(facelists[i] == "sanGlasses")
@@ -266,7 +282,7 @@ public class DecorationsController : MonoBehaviour
     }
 
     public void Eyepatch(){
-        parentObject = GameObject.Find( characterParentObject2);
+        parentObject = GameObject.Find( characterParentObject3);
         for(int i = 0; i < facelists.Length; i++){
             faceObject = parentObject.transform.Find(facelists[i]).gameObject;
             if(facelists[i] == "eyepatch")
